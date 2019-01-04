@@ -14,7 +14,8 @@ import {
     SeaweedContainer,
     SeaweedStem,
     SectionHeader,
-    SectionContent
+    SectionContent,
+    InlineMermaid
 } from '../styles';
 
 import {
@@ -41,7 +42,9 @@ class FAQ extends Component {
                                 <SectionHeader>
                                     Frequently Asked Questions
                                 </SectionHeader>
-                                <BlueMermaid className="ml-auto"/>
+                                <div className="ml-auto">
+                                    <InlineMermaid as={BlueMermaid} />
+                                </div>
                             </div>
                             <div className="row my-5">
                                 <div className="col d-block px-0">

@@ -51,3 +51,13 @@ export const SectionContent = styled.div`
         padding-left: 0;
     `)}
 `
+
+export const HideBelow = (breakpoint) => styled.div`
+    ${mediaBreakpointDown(breakpoint, `
+        display: none !important;
+    `)}
+`
+
+export const InlineMermaid = styled.div`
+    width: 10rem;
+`

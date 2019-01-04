@@ -29,7 +29,7 @@ class Involved extends Component {
                         </SeaweedStem>
                     </SeaweedContainer>
                     <SectionContent>
-                        Schedule Content Here
+                        Get Involved Content Here
                     </SectionContent>
                 </Container>            
             </InvolvedSection>
