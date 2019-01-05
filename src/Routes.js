@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import HackXXLayout from './2019/2019Layout';
 import HackXX2019Page from './2019';
 
-class DecafRoutes extends React.Component {
+class Routes extends React.Component {
 
     with2019Layout(Child) {
         return () =>
@@ -22,4 +22,4 @@ class DecafRoutes extends React.Component {
     }
 }
 
-export default DecafRoutes;
+export default Routes;
