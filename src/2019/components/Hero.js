@@ -20,7 +20,7 @@ class Hero extends Component {
             <HeroSection className="d-flex">
                 <Container className="container-fluid align-items-center d-flex" >
                     <div className="row w-100">
-                        <div className="col-md-6">
+                        <div className="col-md-6 align-items-center d-flex justify-content-center">
                             hero content here
                         </div>
                         <div className="col-md-6">
