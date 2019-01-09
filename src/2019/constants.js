@@ -8,7 +8,8 @@ export const Hero = {
         #FFFFFF 0%,  
         ${LIGHT_BLUE} 0.01%, 
         ${PURPLE} 100%
-    );`
+    );`,
+    width: `85%;`
 }
 
 export const About = {
