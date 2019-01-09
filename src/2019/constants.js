@@ -8,7 +8,30 @@ export const Hero = {
         #FFFFFF 0%,  
         ${LIGHT_BLUE} 0.01%, 
         ${PURPLE} 100%
-    );`
+    );`,
+    animation: {
+        play: true,
+        slideIn: {
+            selector: '#HERO',
+            duration: 1,
+            fromX: '-100px'
+        },
+        fadeIn: {
+            selector: '#TEAL_1, #PURPLE_1, #BLUE_1, #PINK_1',
+            duration: 0.4,
+            yOffset: -10
+        },
+        tremor: {
+            selector: '#LANDMASS, #PALM_TREE_1, #PURPLE_1, #TEAL_1, #TURTLE_1',
+            yOffset: 7,
+            duration: 1
+        },
+        lines: {
+            selector: '#Group_99 > path',
+            duration: 0.3,
+            repeatDelay: 2
+        }
+    }
 }
 
 export const About = {
