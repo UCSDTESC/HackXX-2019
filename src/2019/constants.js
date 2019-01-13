@@ -28,7 +28,7 @@ export const Hero = {
         },
         lines: {
             selector: '#Group_99 > path',
-            duration: 0.3,
+            duration: 0.1,
             repeatDelay: 2
         }
     }

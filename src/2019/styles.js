@@ -28,6 +28,14 @@ export const SeaweedStem = styled.div`
     background-position: center 0;
     background-repeat: repeat-y;
     background-size: auto;
+
+    @keyframes animatedBackground {
+        from { background-position: center 0; }
+        to { background-position: center 800px; }
+    }
+
+    animation: animatedBackground 40s linear infinite;
+
 `
 
 export const SectionHeader = styled.h1`
