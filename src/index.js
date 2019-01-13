@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 
-import './index.css';
+import 'scroll-entrance/dist/scroll-entrance';
 import 'bootstrap/dist/css/bootstrap.css'
+import './index.css';
+
 import Routes from './Routes';
 
 import * as serviceWorker from './serviceWorker';

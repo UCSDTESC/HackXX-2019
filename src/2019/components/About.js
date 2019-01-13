@@ -15,7 +15,6 @@ import {
     SeaweedStem,
     SectionHeader,
     SectionContent,
-    HideBelow
 } from '../styles';
 
 import {
@@ -29,26 +28,51 @@ const AboutSection = styled(Page)`
     height: auto;
 `
 
-const Hide = HideBelow('md');
-
 const AboutHeader = styled(SectionHeader)`
     margin-top: 12rem;
 
     ${mediaBreakpointDown('sm', `
         margin-top: 2rem;
+        text-align: center;
+        width: 100%;
     `)}
 `
 
 const MermaidCopy = styled.div`
     margin-top: 2rem;
+    padding: 1.5rem;
+`
+
+const Mermaid = styled.div`
+    height: 15rem;
+    display: block;
+    margin: auto;
+    width: 100%;
+
+    ${mediaBreakpointDown('md', `
+        width: 75%;
+    `)}
+
+    ${mediaBreakpointDown('sm', `
+        height: 10rem;
+        margin-bottom: 2rem;
+    `)}
+`
+
+const OffsetSeaweedStem = styled(SeaweedStem)`
+    height: 9.8rem;
 `
 
 class About extends Component {
     render() {
+
+        const {DATA_ENTRANCE_DELAY} = AboutConstants;
+
         return (
             <AboutSection>
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
+                        <OffsetSeaweedStem></OffsetSeaweedStem>
                         <AboutSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>
                         <SeaweedStem className="flex-grow-1"></SeaweedStem>
                     </SeaweedContainer>
@@ -65,47 +89,35 @@ class About extends Component {
                             <div className="row">
                                 <SectionHeader> Why should I go to HackXX? </SectionHeader>
                             </div>
-                            <div className="row my-4">
+                            <div className="row">
                                 HackXX is for students of all races, gender, and sexuality.
                             </div>
 
-                            <div className="row mt-5">
-                                <div className="col-md-6">
-                                    <PinkMermaid className="w-50 d-block m-auto" />
-                                </div>
-                                <div className="col-md-6">
-                                    <Hide as={BlueMermaid} className="w-50 d-block m-auto" />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-6">
+                            <div className="row my-5">
+                                <div className="col-md-6" id="pink" data-entrance="fade">
+                                    <Mermaid as={PinkMermaid} />
                                     <MermaidCopy>
                                         <p>All majors are welcome to explore their ideas and passions! Wander through countless fields of interest through our workshops on x, y, and z. </p>
                                     </MermaidCopy>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6" id="blue" data-entrance="fade" data-entrance-delay={DATA_ENTRANCE_DELAY}>
+                                    <Mermaid as={BlueMermaid} />
                                     <MermaidCopy>
                                         <p>Form strong bonds by engaging with other women in tech and interacting with the engineering community.</p>
                                     </MermaidCopy>
                                 </div>
                             </div>
-                            <div className="row mt-5">
-                                <div className="col-md-6">
-                                    <PurpleMermaid className="w-50 d-block m-auto" />
-                                </div>
-                                <div className="col-md-6">
-                                    <Hide as={TealMermaid} className="w-50 d-block m-auto h-100" />
-                                </div>
-                            </div>
-                            <div className="row mb-5">
-                                <div className="col-md-6">
+                            <div className="row my-5">
+                                <div className="col-md-6" id="purple" data-entrance="fade" data-entrance-delay={2*DATA_ENTRANCE_DELAY}>
+                                    <Mermaid as={PurpleMermaid} />
                                     <MermaidCopy>
                                         <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>
                                     </MermaidCopy>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6" id="teal" data-entrance="fade" data-entrance-delay={3*DATA_ENTRANCE_DELAY}>
+                                    <Mermaid as={TealMermaid} />
                                     <MermaidCopy>
-                                        <p>Women encompass 20% of all hackathon participants. We provide a safe space to foster growth & collaboration.</p>
+                                        <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>
                                     </MermaidCopy>
                                 </div>
                             </div>

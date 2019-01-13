@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {mediaBreakpointDown} from '../breakpoints';
 
-export const Page = styled.div`
+export const Page = styled.section`
     width: 100%;
     height: 100%;
 `
@@ -14,8 +14,8 @@ export const Container = styled.div`
 `;
 
 export const SeaweedContainer = styled.div`
-    width: 13%;
-    min-width: 8rem;
+    width: 128px;
+    min-width: 128px;
     display: flex;
 
     ${mediaBreakpointDown('sm', `
@@ -28,6 +28,14 @@ export const SeaweedStem = styled.div`
     background-position: center 0;
     background-repeat: repeat-y;
     background-size: auto;
+
+    @keyframes movingSeaweed {
+        from { background-position: center 0; }
+        to { background-position: center 326px; }
+    }
+
+    animation: movingSeaweed 8s linear infinite;
+
 `
 
 export const SectionHeader = styled.h1`
