@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+
 import {ReactComponent as InvolvedSymbol} from '../svg/symbols/involved.svg';
 import {ReactComponent as TealMermaid} from '../svg/mermaids/teal.svg';
 import {ReactComponent as Fish} from '../svg/fish.svg';
@@ -7,6 +8,8 @@ import {ReactComponent as Fish} from '../svg/fish.svg';
 import {
     Involved as InvolvedConstants
 } from '../constants';
+
+import {mediaBreakpointDown} from '../../breakpoints'
 
 import {
     Page,
@@ -19,11 +22,11 @@ import {
 } from '../styles';
 
 const InvolvedSection = styled(Page)`
-    background: ${InvolvedConstants.gradient}
+    background: ${InvolvedConstants.gradient};
+    height: auto;
 `
 
 const InvolvedFish = styled(Fish)`
-    max-width: 65%;
     text-align: right;
     padding-top: 0;
     padding-bottom: 0;
@@ -45,6 +48,11 @@ const WhiteButton = styled.a`
     position: relative;
     z-index: 1;
     font-size: 1.4rem;
+
+    ${mediaBreakpointDown('md', `
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    `)}
 `
 
 class Involved extends Component {
@@ -61,17 +69,17 @@ class Involved extends Component {
                         
                         <div className="container-fluid">
                             {/* Get Involved title and mermaid */}
-                            <div className="row my-4">
-                                <div className="col-md-6">
+                            <div className="row">
+                                <div className="col-md-8">
                                     <SectionHeader>Get Involved</SectionHeader>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-4">
                                     <InlineMermaid as={TealMermaid} />
                                 </div>
                             </div>
 
                             {/* Register blurb and button */}
-                            <div className="row my-6 align-items-center">
+                            <div className="row mt-5 align-items-center">
                                 <div className="col-md-6">
                                     If you're a student and you're interested in HackXX, go ahead and
                                 </div>
@@ -81,15 +89,15 @@ class Involved extends Component {
                             </div>
 
                             {/* Help out section with three buttons */}
-                            <div className="row justify-content-between">
+                            <div className="row justify-content-between mt-2">
                                 <div className="col-md-6 align-self-end">
                                     If you think HackXX is a great initiative and would like to help out, you can be a
                                 </div>
-                                <div className="col-md-6 align-self-start">
-                                    <InvolvedFish/>
+                                <div className="ml-auto">
+                                    <InvolvedFish className="w-100 h-100"/>
                                 </div>
                             </div>
-                            <div className="row align-items-start">
+                            <div className="row align-items-start mb-5 mt-3">
                                 <div className="col-md-auto">
                                     <WhiteButton className="btn btn-outline-light" href="https://google.com" target="_blank">volunteer</WhiteButton>
                                 </div>
