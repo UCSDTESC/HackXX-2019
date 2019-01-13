@@ -33,6 +33,8 @@ const AboutHeader = styled(SectionHeader)`
 
     ${mediaBreakpointDown('sm', `
         margin-top: 2rem;
+        text-align: center;
+        width: 100%;
     `)}
 `
 
@@ -56,6 +58,10 @@ const Mermaid = styled.div`
     `)}
 `
 
+const OffsetSeaweedStem = styled(SeaweedStem)`
+    height: 9.8rem;
+`
+
 class About extends Component {
     render() {
 
@@ -65,6 +71,7 @@ class About extends Component {
             <AboutSection>
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
+                        <OffsetSeaweedStem></OffsetSeaweedStem>
                         <AboutSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>
                         <SeaweedStem className="flex-grow-1"></SeaweedStem>
                     </SeaweedContainer>
