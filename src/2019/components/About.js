@@ -40,6 +40,7 @@ const AboutHeader = styled(SectionHeader)`
 
 const MermaidCopy = styled.div`
     margin-top: 2rem;
+    padding: 1.5rem;
 `
 
 const Mermaid = styled.div`
