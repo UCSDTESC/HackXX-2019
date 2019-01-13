@@ -31,10 +31,10 @@ export const SeaweedStem = styled.div`
 
     @keyframes movingSeaweed {
         from { background-position: center 0; }
-        to { background-position: center 800px; }
+        to { background-position: center 326px; }
     }
 
-    animation: movingSeaweed 40s linear infinite;
+    animation: movingSeaweed 8s linear infinite;
 
 `
 
