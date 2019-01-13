@@ -35,7 +35,8 @@ export const Hero = {
 }
 
 export const About = {
-    gradient: `linear-gradient(180deg, #53B4E2 0%, #6493D2 100%);`
+    gradient: `linear-gradient(180deg, #53B4E2 0%, #6493D2 100%);`,
+    DATA_ENTRANCE_DELAY: 250
 }
 
 export const Involved = {

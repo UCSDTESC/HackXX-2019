@@ -42,7 +42,6 @@ class Hero extends Component {
         new TimelineMax({repeat: -1, yoyo: true, delay: slideIn.duration + fadeIn.duration})
             .to(tremor.selector, tremor.duration, {y: tremor.yOffset, ease: Power0.easeInOut})
         
-
     }
 
     render() {

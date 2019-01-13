@@ -29,12 +29,12 @@ export const SeaweedStem = styled.div`
     background-repeat: repeat-y;
     background-size: auto;
 
-    @keyframes animatedBackground {
+    @keyframes movingSeaweed {
         from { background-position: center 0; }
         to { background-position: center 800px; }
     }
 
-    animation: animatedBackground 40s linear infinite;
+    animation: movingSeaweed 40s linear infinite;
 
 `
 
