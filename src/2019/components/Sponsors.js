@@ -6,7 +6,8 @@ import {
     Page,
     Container,
     SeaweedContainer,
-    SectionContent
+    SectionContent,
+    SectionHeader
 } from '../styles';
 
 import {
@@ -28,7 +29,11 @@ class Sponsors extends Component {
                         </div>
                     </SeaweedContainer>
                     <SectionContent>
-                        Sponsors Content Goes Here
+                        <div className="container-fluid">
+                            <div className="row">
+                                <SectionHeader>Past Sponsors</SectionHeader>
+                            </div>
+                        </div>
                     </SectionContent>
                 </Container>
             </SponsorsSection>

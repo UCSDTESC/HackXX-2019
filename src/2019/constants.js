@@ -22,7 +22,7 @@ export const Hero = {
             yOffset: -10
         },
         tremor: {
-            selector: '#LANDMASS, #PALM_TREE_1, #PURPLE_1, #TEAL_1, #TURTLE_1',
+            selector: '#LANDMASS, #PALM_TREE_1, #PURPLE_1, #TEAL_1, #TURTLE_1, #BLUE_1, #PINK_1, #SEAWEED_1, #SYMBOLS_1',
             yOffset: 7,
             duration: 1
         },
@@ -30,6 +30,9 @@ export const Hero = {
             selector: '#Group_99 > path',
             duration: 0.1,
             repeatDelay: 2
+        },
+        bubbles: {
+            
         }
     }
 }
