@@ -9,11 +9,37 @@ export const Hero = {
         ${LIGHT_BLUE} 0.01%, 
         ${PURPLE} 100%
     );`,
-    width: `85%;`
+    animation: {
+        play: true,
+        slideIn: {
+            selector: '#HERO',
+            duration: 1,
+            fromX: '-100px'
+        },
+        fadeIn: {
+            selector: '#TEAL_1, #PURPLE_1, #BLUE_1, #PINK_1',
+            duration: 0.4,
+            yOffset: -10
+        },
+        tremor: {
+            selector: '#LANDMASS, #PALM_TREE_1, #PURPLE_1, #TEAL_1, #TURTLE_1, #BLUE_1, #PINK_1, #SEAWEED_1, #SYMBOLS_1',
+            yOffset: 7,
+            duration: 1
+        },
+        lines: {
+            selector: '#Group_99 > path',
+            duration: 0.1,
+            repeatDelay: 2
+        },
+        bubbles: {
+            
+        }
+    }
 }
 
 export const About = {
-    gradient: `linear-gradient(180deg, #53B4E2 0%, #6493D2 100%);`
+    gradient: `linear-gradient(180deg, #53B4E2 0%, #6493D2 100%);`,
+    DATA_ENTRANCE_DELAY: 250
 }
 
 export const Involved = {

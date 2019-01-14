@@ -1,35 +1,60 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {Bounce, TweenLite, TimelineMax, Power0} from 'gsap';
 
 import {
     Page,
     Container,
-    SectionContent
+    WhiteButton
 } from '../styles';
-import {ReactComponent as HeroGraphic} from '../svg/hero.svg'
-import {ReactComponent as Braces} from '../svg/hero-braces.svg'
+
+import {mediaBreakpointDown} from '../../breakpoints';
+
+import {ReactComponent as HeroGraphicVector} from '../svg/hero.svg';
+import {ReactComponent as Logo} from '../svg/logo.svg';
+import {ReactComponent as Braces} from '../svg/hero-braces.svg';
+
 import {
-    Hero as HeroConstants
+    Hero as HeroConstants,
+    PURPLE
 } from '../constants';
 
 const HeroSection = styled(Page)`
-    background: ${HeroConstants.gradient}
+    background: ${HeroConstants.gradient};
+
+    ${mediaBreakpointDown('md', `
+        height: auto;
+        min-height: 100%;
+    `)}
 `;
 
-const HeroImage = styled.img`
-    max-width: ${HeroConstants.width}
-    max-height: 50%;
-    position: relative;
-    height: auto;
-    padding-left: 1.5rem;
+const HeroImage = styled(Logo)`
+    width: 50%;
+
+    ${mediaBreakpointDown('md', `
+
+        margin-top: 3rem;
+    `)}
 `;
+
+const HeroCopy = styled.div`
+    font-size: 1.5rem;
+    color: white;
+`
 
 const HeroBraces = styled(Braces)`
-    max-width: ${HeroConstants.width}
-    max-height: 50%;
-    position: relative;
-    height: auto;
+    width: 90%;
+    display: block; 
+    margin: 0 auto;
 `;
+
+const HeroGraphic = styled(HeroGraphicVector)`
+    width: 100%;
+    
+    ${mediaBreakpointDown('md', `
+        margin-bottom: 1rem;
+    `)}
+`
 
 const HeroButton = styled.button`
     color: white;
@@ -50,39 +75,68 @@ const HeroButton = styled.button`
     }
 `;
 
+const CTA = styled(WhiteButton)`
+    margin-top: 2rem;
+    padding:  0.5rem 1rem;
+
+    &:hover {
+        color: ${PURPLE} !important;
+    }
+`
+
 class Hero extends Component {
+
+
+    componentDidMount() {
+
+        const {animation} = HeroConstants;
+
+        if (animation.play) {
+            this.heroAnimation(animation);
+        }
+    }
+
+    heroAnimation({slideIn, fadeIn, tremor, lines}) {
+        TweenLite
+            .from(slideIn.selector, slideIn.duration, {x: slideIn.fromX, opacity: 0})
+        
+        TweenLite
+            .from(fadeIn.selector, fadeIn.duration, {autoAlpha: 0, delay: slideIn.duration, y: fadeIn.yOffset, ease: Bounce.easeOut});
+
+        new TimelineMax({repeat: -1, yoyo: true, repeatDelay: lines.repeatDelay})
+            .staggerFrom(lines.selector, lines.duration, {scaleX: 0, delay: fadeIn.duration, ease: Power0.easeInOut}, 0.1)
+
+        new TimelineMax({repeat: -1, yoyo: true, delay: slideIn.duration + fadeIn.duration})
+            .to(tremor.selector, tremor.duration, {y: tremor.yOffset, ease: Power0.easeInOut})
+        
+    }
+
     render() {
         return (
-            <HeroSection className="d-flex">
-                <Container className="container-fluid align-items-center d-flex h-100" >
-                    <div className="row w-100">
-                        <div className="col-md-6 align-items-center d-flex justify-content-center">
-                            <div className="row">
-                                <div className="col-sm-12 align-items-center">
-                                    <HeroImage src="/hackxx2019_logo.gif" className="img-fluid" />
-                                    <div className="row">
-                                        <div className="col-sm-12">
-                                            <HeroBraces className="w-100" />
-                                            <div className="row w-100">
-                                                <div className="col-sm-11 text-center mr-3">
-                                                    <SectionContent>
-                                                        April 7 - 8, 2019
-                                                        <br />
-                                                        PC West Ballroom, UC San Diego
-                                                    </SectionContent>
-                                                    <HeroButton className="btn btn-outline-light">REGISTER</HeroButton>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <HeroSection className="align-items-center justify-content-center d-flex">
+                <div className="container-fluid align-items-center justify-content-center d-flex" >
+                    <Container className="row w-100">
+                        <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
+                            <HeroImage src="logo.svg" />
+                            <HeroBraces />
+                            <HeroCopy className="text-center">
+                                <div>
+                                    April 6 - 7, 2019  
                                 </div>
-                            </div>
+
+                                <div>
+                                    PC West Ballroom, UC San Diego
+                                </div>
+                                <CTA className="btn btn-outline-light" >
+                                    REGISTER
+                                </CTA>
+                            </HeroCopy>
                         </div>
-                        <div className="col-md-6">
-                            <HeroGraphic className="w-100 h-100"/>
+                        <div className="col-md-6 align-items-center d-flex justify-content-center">
+                            <HeroGraphic className=""/>
                         </div>
-                    </div>
-                </Container>
+                    </Container>
+                </div>
             </HeroSection>
         )
     }
