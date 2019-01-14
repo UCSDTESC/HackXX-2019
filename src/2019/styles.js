@@ -69,3 +69,20 @@ export const HideBelow = (breakpoint) => styled.div`
 export const InlineMermaid = styled.div`
     width: 10rem;
 `
+export const WhiteButton = styled.a`
+    border: 4px solid white;
+    border-radius: 16px;
+    color: white;
+    background: transparent;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: 0.75rem;
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+
+    ${mediaBreakpointDown('md', `
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    `)}
+`

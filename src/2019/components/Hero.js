@@ -4,18 +4,85 @@ import {Bounce, TweenLite, TimelineMax, Power0} from 'gsap';
 
 import {
     Page,
-    Container
+    Container,
+    WhiteButton
 } from '../styles';
 
-import {ReactComponent as HeroGraphic} from '../svg/hero.svg';
+import {mediaBreakpointDown} from '../../breakpoints';
+
+import {ReactComponent as HeroGraphicVector} from '../svg/hero.svg';
+import {ReactComponent as Logo} from '../svg/logo.svg';
+import {ReactComponent as Braces} from '../svg/hero-braces.svg';
 
 import {
-    Hero as HeroConstants
+    Hero as HeroConstants,
+    PURPLE
 } from '../constants';
 
 const HeroSection = styled(Page)`
-    background: ${HeroConstants.gradient}
+    background: ${HeroConstants.gradient};
+
+    ${mediaBreakpointDown('md', `
+        height: auto;
+        min-height: 100%;
+    `)}
 `;
+
+const HeroImage = styled(Logo)`
+    width: 50%;
+
+    ${mediaBreakpointDown('md', `
+
+        margin-top: 3rem;
+    `)}
+`;
+
+const HeroCopy = styled.div`
+    font-size: 1.5rem;
+    color: white;
+`
+
+const HeroBraces = styled(Braces)`
+    width: 90%;
+    display: block; 
+    margin: 0 auto;
+`;
+
+const HeroGraphic = styled(HeroGraphicVector)`
+    width: 100%;
+    
+    ${mediaBreakpointDown('md', `
+        margin-bottom: 1rem;
+    `)}
+`
+
+const HeroButton = styled.button`
+    color: white;
+    background-color: transparent;
+    border-radius: 1.2rem;
+    border: 2px solid white;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    max-width: 100%;
+
+    &:hover {
+        color: black;
+        background-color: white;
+    }
+`;
+
+const CTA = styled(WhiteButton)`
+    margin-top: 2rem;
+    padding:  0.5rem 1rem;
+
+    &:hover {
+        color: ${PURPLE} !important;
+    }
+`
 
 class Hero extends Component {
 
@@ -46,17 +113,30 @@ class Hero extends Component {
 
     render() {
         return (
-            <HeroSection className="d-flex">
-                <Container className="container-fluid align-items-center d-flex" >
-                    <div className="row w-100">
+            <HeroSection className="align-items-center justify-content-center d-flex">
+                <div className="container-fluid align-items-center justify-content-center d-flex" >
+                    <Container className="row w-100">
+                        <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
+                            <HeroImage src="logo.svg" />
+                            <HeroBraces />
+                            <HeroCopy className="text-center">
+                                <div>
+                                    April 6 - 7, 2019  
+                                </div>
+
+                                <div>
+                                    PC West Ballroom, UC San Diego
+                                </div>
+                                <CTA className="btn btn-outline-light" >
+                                    REGISTER
+                                </CTA>
+                            </HeroCopy>
+                        </div>
                         <div className="col-md-6 align-items-center d-flex justify-content-center">
-                            hero content here
+                            <HeroGraphic className=""/>
                         </div>
-                        <div className="col-md-6">
-                            <HeroGraphic className="w-100 h-100"/>
-                        </div>
-                    </div>
-                </Container>
+                    </Container>
+                </div>
             </HeroSection>
         )
     }
