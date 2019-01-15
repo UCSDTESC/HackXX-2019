@@ -43,7 +43,18 @@ export const About = {
 }
 
 export const Involved = {
-    gradient: `linear-gradient(180deg, #6493D2 0%, #7D7ABC 100%);`
+    gradient: `linear-gradient(180deg, #6493D2 0%, #7D7ABC 100%);`,
+    animation: {
+        play: true,
+        fish: {
+            blue: {
+
+            },
+            red: {
+
+            }
+        }
+    }
 }
 
 export const Schedule = {

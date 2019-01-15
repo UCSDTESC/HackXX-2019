@@ -108,13 +108,13 @@ class About extends Component {
                                 </div>
                             </div>
                             <div className="row my-5">
-                                <div className="col-md-6" id="purple" data-entrance="fade" data-entrance-delay={2*DATA_ENTRANCE_DELAY}>
+                                <div className="col-md-6" id="purple" data-entrance="fade">
                                     <Mermaid as={PurpleMermaid} />
                                     <MermaidCopy>
                                         <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>
                                     </MermaidCopy>
                                 </div>
-                                <div className="col-md-6" id="teal" data-entrance="fade" data-entrance-delay={3*DATA_ENTRANCE_DELAY}>
+                                <div className="col-md-6" id="teal" data-entrance="fade" data-entrance-delay={DATA_ENTRANCE_DELAY}>
                                     <Mermaid as={TealMermaid} />
                                     <MermaidCopy>
                                         <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>

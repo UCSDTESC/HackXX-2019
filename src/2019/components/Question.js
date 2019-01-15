@@ -50,7 +50,7 @@ class Question extends Component {
 
         return (
             <>
-                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true" data-entrance="fade">
                     <div className="panel panel-default">
                         <div className="panel-heading" id={`heading-${idx}`} role="tab">
                             <QuestionContainer className="panel-title" isLast={isLast} isFirst={isFirst}>

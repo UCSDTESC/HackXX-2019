@@ -56,25 +56,6 @@ const HeroGraphic = styled(HeroGraphicVector)`
     `)}
 `
 
-const HeroButton = styled.button`
-    color: white;
-    background-color: transparent;
-    border-radius: 1.2rem;
-    border: 2px solid white;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 1.8rem;
-    margin-top: 1rem;
-    max-width: 100%;
-
-    &:hover {
-        color: black;
-        background-color: white;
-    }
-`;
-
 const CTA = styled(WhiteButton)`
     margin-top: 2rem;
     padding:  0.5rem 1rem;
@@ -117,7 +98,7 @@ class Hero extends Component {
                 <div className="container-fluid align-items-center justify-content-center d-flex" >
                     <Container className="row w-100">
                         <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
-                            <HeroImage src="logo.svg" />
+                            <HeroImage />
                             <HeroBraces />
                             <HeroCopy className="text-center">
                                 <div>

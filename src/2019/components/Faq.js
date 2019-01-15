@@ -36,7 +36,7 @@ class FAQ extends Component {
                         <SeaweedStem className="flex-grow-1">
                         </SeaweedStem>
                     </SeaweedContainer>
-                    <SectionContent>
+                    <SectionContent data-entrance="fade">
                         <div className="container-fluid">
                             <div className="row">
                                 <SectionHeader>

@@ -39,6 +39,20 @@ const InvolvedFish = styled(Fish)`
 `
 
 class Involved extends Component {
+
+
+    componentDidMount() {
+        const {animation} = InvolvedConstants;
+
+        if (animation.play) {
+            this.fishAnimation()
+        }
+    }
+
+    fishAnimation() {
+        
+    }
+
     render() {
         return (
             <InvolvedSection>
@@ -48,7 +62,7 @@ class Involved extends Component {
                         <SeaweedStem className="flex-grow-1">
                         </SeaweedStem>
                     </SeaweedContainer>
-                    <SectionContent>
+                    <SectionContent data-entrance="fade">
                         
                         <div className="container-fluid">
                             {/* Get Involved title and mermaid */}
