@@ -21,11 +21,8 @@ import {
 
 const HeroSection = styled(Page)`
     background: ${HeroConstants.gradient};
-
-    ${mediaBreakpointDown('md', `
-        height: auto;
-        min-height: 100%;
-    `)}
+    min-height: 100%;
+    height: auto;
 `;
 
 const HeroImage = styled(Logo)`

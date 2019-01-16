@@ -62,7 +62,19 @@ export const Schedule = {
 }
 
 export const Faq = {
-    gradient: `linear-gradient(180deg, #8E44AD 0%, #C39F9F 82.32%, #DFCF98 100%);`
+    gradient: `linear-gradient(180deg, #8E44AD 0%, #C39F9F 82.32%, #DFCF98 100%);`,
+    animation: {
+        play: false,
+        fish: {
+            red: {
+                selector: '#FISH__ORANGE #BODY_2',
+                duration: 3
+            },
+            blue: {
+                selector: ''
+            }
+        }
+    }
 }
 
 export const Sponsor = {

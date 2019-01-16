@@ -34,6 +34,7 @@ const QuestionContent = styled.div`
     color: ${PURPLE};
     text-decoration: none;
     text-align: center;
+    padding: 1rem 0;
 `
 
 class Question extends Component {
@@ -50,7 +51,7 @@ class Question extends Component {
 
         return (
             <>
-                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true" data-entrance="fade">
+                <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <div className="panel panel-default">
                         <div className="panel-heading" id={`heading-${idx}`} role="tab">
                             <QuestionContainer className="panel-title" isLast={isLast} isFirst={isFirst}>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {Bounce, TweenLite, TimelineMax, Power0} from 'gsap';
 
 import {ReactComponent as FaqSymbol} from '../svg/symbols/faq.svg';
 import {ReactComponent as BlueMermaid} from '../svg/mermaids/blue.svg';
@@ -19,7 +20,7 @@ import {
 } from '../styles';
 
 import {
-    Faq as FaqConstants,
+    Faq as FaqConstants, Faq,
 } from '../constants';
 
 const FaqSection = styled(Page)`
@@ -27,6 +28,23 @@ const FaqSection = styled(Page)`
     height: auto;
 `
 class FAQ extends Component {
+
+    componentDidMount() {
+        const {animation} = FaqConstants;
+        if (animation.play) {
+            this.fishAnimation(animation.fish);
+        }
+    }
+
+    fishAnimation({red}) {
+        new TimelineMax({repeat: -1, yoyo: true})
+            .to(red.selector, red.duration, {x: 300})
+
+        new TimelineMax({repeat: -1, yoyo: true})
+            .to(red.selector, 1, {rotationY: '5deg', transformOrigin: '50%'})
+
+    }
+
     render() {
         return (
             <FaqSection>
