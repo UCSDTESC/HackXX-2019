@@ -15,3 +15,17 @@ body {
   height: 100%;
   font-family: 'Quicksand', sans-serif;
 }
+
+/* Custom Entrance Animation */
+
+/*This is the initial state before animating */
+[data-entrance="rotate-in"]{
+    transform-origin: center;
+	  transform: scale(2) rotate(180deg);
+    opacity: 0;
+}
+/*This is the state after animating */
+[data-entrance="rotate-in"].has-animated{
+	transform: rotate(0deg);
+  opacity: 1;
+}

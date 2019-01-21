@@ -22,6 +22,8 @@ import {
     WhiteButton
 } from '../styles';
 
+import { TweenLite, TimelineMax } from 'gsap';
+
 const InvolvedSection = styled(Page)`
     background: ${InvolvedConstants.gradient};
     height: auto;
@@ -45,12 +47,13 @@ class Involved extends Component {
         const {animation} = InvolvedConstants;
 
         if (animation.play) {
-            this.fishAnimation()
+            this.fishAnimation(animation.fish)
         }
     }
 
-    fishAnimation() {
-        
+    fishAnimation({blue}) {
+        new TimelineMax({yoyo: true, repeat: -1})
+            .to(blue.selector, 1, {y: -30})
     }
 
     render() {
