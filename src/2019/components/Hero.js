@@ -60,6 +60,8 @@ const CTA = styled(WhiteButton)`
     &:hover {
         color: ${PURPLE} !important;
     }
+
+
 `
 
 class Hero extends Component {
@@ -91,7 +93,7 @@ class Hero extends Component {
 
     render() {
         return (
-            <HeroSection className="align-items-center justify-content-center d-flex">
+            <HeroSection className="align-items-center justify-content-center d-flex" id="hero">
                 <div className="container-fluid align-items-center justify-content-center d-flex" >
                     <Container className="row w-100">
                         <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
@@ -105,9 +107,11 @@ class Hero extends Component {
                                 <div>
                                     PC West Ballroom, UC San Diego
                                 </div>
-                                <CTA className="btn btn-outline-light" >
-                                    REGISTER
-                                </CTA>
+                                <a href="https://www.tesc.events" target="_blank" className="text-white">
+                                    <CTA className="btn btn-outline-light" >
+                                        REGISTER
+                                    </CTA>                      
+                                </a>
                             </HeroCopy>
                         </div>
                         <div className="col-md-6 align-items-center d-flex justify-content-center">

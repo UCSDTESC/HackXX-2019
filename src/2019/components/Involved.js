@@ -81,7 +81,7 @@ class Involved extends Component {
                                     If you're a student and you're interested in HackXX, go ahead and
                                 </div>
                                 <div className="col-md-6">
-                                    <WhiteButton className="btn btn-outline-light" href="https://google.com" target="_blank">register</WhiteButton>
+                                    <WhiteButton className="btn btn-outline-light" href="https://www.tesc.events/register/hackxx" target="_blank">register</WhiteButton>
                                 </div>
                             </div>
 

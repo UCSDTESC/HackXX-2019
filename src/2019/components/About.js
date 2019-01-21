@@ -82,7 +82,7 @@ class About extends Component {
                                 <AboutHeader> What's HackXX? </AboutHeader>
                             </div>
                             <div className="row my-4">
-                                HackXX is UC San Diego's annual women and nonbinary-centric hackathon. It’s an empowering place to build great projects. Over 24 hours, participants will be given the tools and knowledge to materialize their technological dreams.
+                                HackXX is a women-centric hackathon that provides a collaborative, inclusive space for all to explore technology and apply their talents. Due to the large disparity in gender representation within technological careers, we hope to empower women to join these communities and make a difference. HackXX provides the tools, fellowship, and knowledge to explore technological ideas and passions. All interested in fostering an empathetic and collaborative tech space are welcome! 
                             </div>
                         </div>
                         <div className="container-fluid">
@@ -97,13 +97,13 @@ class About extends Component {
                                 <div className="col-md-6" id="pink" data-entrance="fade">
                                     <Mermaid as={PinkMermaid} />
                                     <MermaidCopy>
-                                        <p>All majors are welcome to explore their ideas and passions! Wander through countless fields of interest through our workshops on x, y, and z. </p>
+                                        <p>Meet other women and individuals passionate about tech, and create new ties within the engineering community</p>
                                     </MermaidCopy>
                                 </div>
                                 <div className="col-md-6" id="blue" data-entrance="fade" data-entrance-delay={DATA_ENTRANCE_DELAY}>
                                     <Mermaid as={BlueMermaid} />
                                     <MermaidCopy>
-                                        <p>Form strong bonds by engaging with other women in tech and interacting with the engineering community.</p>
+                                        <p>Resources will be provided for people of all backgrounds and skills, so there will definitely be something to learn</p>
                                     </MermaidCopy>
                                 </div>
                             </div>
@@ -111,13 +111,13 @@ class About extends Component {
                                 <div className="col-md-6" id="purple" data-entrance="fade">
                                     <Mermaid as={PurpleMermaid} />
                                     <MermaidCopy>
-                                        <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>
+                                        <p>Support gender equality in tech!</p>
                                     </MermaidCopy>
                                 </div>
                                 <div className="col-md-6" id="teal" data-entrance="fade" data-entrance-delay={DATA_ENTRANCE_DELAY}>
                                     <Mermaid as={TealMermaid} />
                                     <MermaidCopy>
-                                        <p>Don’t know how to do something? We have a supportive group of mentors who can walk you through it and provide you with resources!</p>
+                                        <p>Opportunity to network with industry professionals</p>
                                     </MermaidCopy>
                                 </div>
                             </div>

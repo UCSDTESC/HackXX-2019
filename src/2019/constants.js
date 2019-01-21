@@ -64,11 +64,12 @@ export const Schedule = {
 export const Faq = {
     gradient: `linear-gradient(180deg, #8E44AD 0%, #C39F9F 82.32%, #DFCF98 100%);`,
     animation: {
-        play: false,
+        play: true,
         fish: {
             red: {
-                selector: '#FISH__ORANGE #BODY_2',
-                duration: 3
+                selector: '#FISH__ORANGE',
+                duration: 2,
+                x: '100%'
             },
             blue: {
                 selector: ''

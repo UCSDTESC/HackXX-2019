@@ -29,6 +29,10 @@ const FaqSection = styled(Page)`
 `
 class FAQ extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         const {animation} = FaqConstants;
         if (animation.play) {
@@ -37,11 +41,26 @@ class FAQ extends Component {
     }
 
     fishAnimation({red}) {
-        new TimelineMax({repeat: -1, yoyo: true})
-            .to(red.selector, red.duration, {x: 300})
+        let x = 0;
+        let tl = new TimelineMax({repeat: -1, yoyo: true,
+            onRepeat: () => {
+                let scaleX = (x % 2) ? '1' : '-1'
+                TweenLite.set(red.selector, {scaleX, transformOrigin: '50%'});
+                x++;
+            }
+        })
 
-        new TimelineMax({repeat: -1, yoyo: true})
-            .to(red.selector, 1, {rotationY: '5deg', transformOrigin: '50%'})
+        tl.to(red.selector, red.duration, {
+            x: red.x,
+            ease: Power0.easeInOut
+        })
+
+        new TimelineMax({repeat: -1, yoyo: true,})
+            .to(red.selector, red.duration / 5, {
+                y: 3,
+                rotateY: 4,
+                ease: Power0.easeInOut
+            })
 
     }
 
