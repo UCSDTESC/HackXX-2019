@@ -14,11 +14,37 @@ import {
     Sponsor as SponsorsConstants
 } from '../constants';
 
+import {pastSponsors} from '../data/Sponsors.js'
+
 const SponsorsSection = styled(Page)`
-    background: ${SponsorsConstants.gradient}
+    background: ${SponsorsConstants.gradient};
+    height: auto;
 `
 
+const SponsorContainer = styled.a`
+    
+    transition: all 0.3s ease-in-out;
+    
+    &:hover {
+        transform-origin: center;
+        transform: scale(0.9)
+    }
+`
+
+function Sponsor(props) {
+    return (
+        <SponsorContainer className="col-md-4 my-5" href={props.link}>
+            <img src={props.logo} className="img-fluid d-block my-auto"/>
+        </SponsorContainer>
+    )
+}
+
 class Sponsors extends Component {
+
+    renderSponsors() {
+        return pastSponsors.map(p => <Sponsor {...p}/>)
+    }
+
     render() {
         return (
             <SponsorsSection>
@@ -32,6 +58,9 @@ class Sponsors extends Component {
                         <div className="container-fluid">
                             <div className="row">
                                 <SectionHeader>Past Sponsors</SectionHeader>
+                            </div>
+                            <div className="row">
+                                {this.renderSponsors()}
                             </div>
                         </div>
                     </SectionContent>

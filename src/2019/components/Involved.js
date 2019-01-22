@@ -99,13 +99,13 @@ class Involved extends Component {
                             </div>
                             <div className="row align-items-start mb-5 mt-3">
                                 <div className="col-md-auto">
-                                    <WhiteButton className="btn btn-outline-light" href="https://google.com" target="_blank">volunteer</WhiteButton>
+                                    <WhiteButton className="btn btn-outline-light" href="https://tesc.typeform.com/to/wnhOgj" target="_blank">volunteer</WhiteButton>
                                 </div>
                                 <div className="col-md-auto">
-                                    <WhiteButton className="btn btn-outline-light" href="https://google.com" target="_blank">mentor</WhiteButton>
+                                    <WhiteButton className="btn btn-outline-light" href="https://tesc.typeform.com/to/wnhOgj" target="_blank">mentor</WhiteButton>
                                 </div>
                                 <div className="col-md-auto">
-                                    <WhiteButton className="btn btn-outline-light" href="https://google.com" target="_blank">sponsor</WhiteButton>
+                                    <WhiteButton className="btn btn-outline-light" href="/sponsorship-packet.pdf" target="_blank">sponsor</WhiteButton>
                                 </div>
                             </div>
                         </div>

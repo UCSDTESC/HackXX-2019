@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import {Bounce, TweenLite, TimelineMax, Power0} from 'gsap';
+import {Bounce, TweenLite, TimelineMax, Power0, TimelineLite, TweenMax} from 'gsap';
 
 import {ReactComponent as FaqSymbol} from '../svg/symbols/faq.svg';
 import {ReactComponent as BlueMermaid} from '../svg/mermaids/blue.svg';
@@ -40,7 +40,7 @@ class FAQ extends Component {
         }
     }
 
-    fishAnimation({red}) {
+    fishAnimation({red, blue, bubbles}) {
         let x = 0;
         let tl = new TimelineMax({repeat: -1, yoyo: true,
             onRepeat: () => {
@@ -62,6 +62,14 @@ class FAQ extends Component {
                 ease: Power0.easeInOut
             })
 
+        new TimelineMax({repeat: -1, yoyo: true})
+            .to(blue.selector, 0.8, {y: 5, ease: Power0.easeInOut, rotateY: 2});
+
+        const bubbleElements = document.querySelectorAll(bubbles.selector);
+
+        bubbleElements.forEach(x => {
+            new TimelineMax({repeat: -1, yoyo: true}).fromTo(x, 1, {y: -2 * Math.random()}, {y: 2 * Math.random()})
+        })
     }
 
     render() {

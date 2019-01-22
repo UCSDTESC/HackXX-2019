@@ -72,7 +72,10 @@ export const Faq = {
                 x: '100%'
             },
             blue: {
-                selector: ''
+                selector: '#FISH__TROUT'
+            },
+            bubbles: {
+                selector: '#FISH__TROUT #BUBBLES g'
             }
         }
     }
