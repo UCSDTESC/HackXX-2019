@@ -2,6 +2,10 @@
   "name": "hackxx-2019",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "5.6.0",
+    "node": "9.7.1"
+  },
   "dependencies": {
     "bootstrap": "^4.2.1",
     "gsap": "^2.0.2",
@@ -11,8 +15,7 @@
     "react-router-dom": "^4.3.1",
     "reactstrap": "^7.1.0",
     "scroll-entrance": "^1.0.0",
-    "styled-components": "^4.1.3",
-    "@fortawesome/fontawesome-free": "^5.6.3"
+    "styled-components": "^4.1.3"
   },
   "devDependencies": {
     "react-scripts": "2.1.2"
