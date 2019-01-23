@@ -57,7 +57,6 @@ const FooterLinkItem = styled.li`
     }
 
     ${props => props.isLogo && `
-        margin: 100rem;
     `}
 `
 
@@ -93,7 +92,7 @@ class Footer extends Component {
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem isLogo={true}>
-                                <FooterLink  chref="http://tesc.ucsd.edu" target="_new">
+                                <FooterLink href="http://tesc.ucsd.edu" target="_new">
                                 <img src="/tesc-logo.png" />
                                 </FooterLink>
                             </FooterLinkItem>
