@@ -11,10 +11,10 @@
     "react-router-dom": "^4.3.1",
     "reactstrap": "^7.1.0",
     "scroll-entrance": "^1.0.0",
-    "styled-components": "^4.1.3"
+    "styled-components": "^4.1.3",
+    "@fortawesome/fontawesome-free": "^5.6.3"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.6.3",
     "react-scripts": "2.1.2"
   },
   "scripts": {
