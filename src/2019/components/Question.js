@@ -67,7 +67,7 @@ class Question extends Component {
                             <QuestionContainer className="panel-title" isLast={isLast} isFirst={isFirst}>
                                 <QuestionText className="collapsed w-100 d-block text-center" role="button" data-toggle="collapse" data-parent="#accordion" href={`#collapse-${idx}`} aria-expanded="false" aria-controls={`collapse-${idx}`}>
                                     {question}
-                                <i className="pull-right fa fa-plus float-right mt-1 question__icon"></i>
+                                {/*<i className="pull-right fa fa-plus float-right mt-1 question__icon"></i>*/}
                                 </QuestionText>
                                 <QuestionContent className="panel-collapse collapse mt-3" id={`collapse-${idx}`} role="tabpanel" aria-labelledby={`heading-${idx}`}>
                                     <div className="panel-body">
