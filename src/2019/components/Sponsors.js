@@ -19,6 +19,7 @@ import {pastSponsors} from '../data/Sponsors.js'
 const SponsorsSection = styled(Page)`
     background: ${SponsorsConstants.gradient};
     height: auto;
+    transform: translateY(-1px)
 `
 
 const SponsorContainer = styled.a`
