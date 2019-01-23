@@ -8,10 +8,11 @@ import {
     WhiteButton
 } from '../styles';
 
+import Nav from './Nav';
 import {mediaBreakpointDown} from '../../breakpoints';
 
 import {ReactComponent as HeroGraphicVector} from '../svg/hero.svg';
-import {ReactComponent as Logo} from '../svg/logo.svg';
+import {ReactComponent as Logo} from '../svg/logo-white.svg';
 import {ReactComponent as Braces} from '../svg/hero-braces.svg';
 
 import {
@@ -26,7 +27,7 @@ const HeroSection = styled(Page)`
 `;
 
 const HeroImage = styled(Logo)`
-    width: 50%;
+    width: 42%;
 
     ${mediaBreakpointDown('md', `
 
@@ -46,7 +47,7 @@ const HeroBraces = styled(Braces)`
 `;
 
 const HeroGraphic = styled(HeroGraphicVector)`
-    width: 100%;
+    width: 90%;
     
     ${mediaBreakpointDown('md', `
         margin-bottom: 1rem;
@@ -60,8 +61,6 @@ const CTA = styled(WhiteButton)`
     &:hover {
         color: ${PURPLE} !important;
     }
-
-
 `
 
 class Hero extends Component {
@@ -93,33 +92,37 @@ class Hero extends Component {
 
     render() {
         return (
-            <HeroSection className="align-items-center justify-content-center d-flex" id="hero">
-                <div className="container-fluid align-items-center justify-content-center d-flex" >
-                    <Container className="row w-100">
-                        <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
-                            <HeroImage />
-                            <HeroBraces />
-                            <HeroCopy className="text-center">
-                                <div>
-                                    April 6 - 7, 2019  
-                                </div>
+                <HeroSection >
+                    <Nav />
+                    <div className="align-items-center justify-content-center d-flex pt-5" id="hero">
+                        <div className="container-fluid align-items-center justify-content-center d-flex mt-5" >
+                            <Container className="row w-100">
+                                <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
+                                    <HeroImage src="/logo.gif" className="img-fluid" />
+                                    <HeroBraces />
+                                    <HeroCopy className="text-center">
+                                        <div>
+                                            April 6 - 7, 2019  
+                                        </div>
 
-                                <div>
-                                    PC West Ballroom, UC San Diego
+                                        <div>
+                                            PC West Ballroom, UC San Diego
+                                        </div>
+                                        <a href="https://www.tesc.events" target="_blank" className="text-white">
+                                            <CTA className="btn btn-outline-light" >
+                                                REGISTER
+                                            </CTA>                      
+                                        </a>
+                                    </HeroCopy>
                                 </div>
-                                <a href="https://www.tesc.events" target="_blank" className="text-white">
-                                    <CTA className="btn btn-outline-light" >
-                                        REGISTER
-                                    </CTA>                      
-                                </a>
-                            </HeroCopy>
+                                <div className="col-md-6 align-items-center d-flex justify-content-center">
+                                    <HeroGraphic className=""/>
+                                </div>
+                            </Container>
                         </div>
-                        <div className="col-md-6 align-items-center d-flex justify-content-center">
-                            <HeroGraphic className=""/>
-                        </div>
-                    </Container>
-                </div>
-            </HeroSection>
+                    </div>
+
+                </HeroSection>
         )
     }
 }

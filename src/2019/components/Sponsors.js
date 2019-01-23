@@ -33,7 +33,7 @@ const SponsorContainer = styled.a`
 
 function Sponsor(props) {
     return (
-        <SponsorContainer className="col-md-4 my-5" href={props.link}>
+        <SponsorContainer className="col-md-4 col-lg-4 my-5 d-block" href={props.link}>
             <img src={props.logo} className="img-fluid d-block my-auto"/>
         </SponsorContainer>
     )
@@ -59,7 +59,7 @@ class Sponsors extends Component {
                             <div className="row">
                                 <SectionHeader>Past Sponsors</SectionHeader>
                             </div>
-                            <div className="row">
+                            <div className="row align-items-center justify-content-center">
                                 {this.renderSponsors()}
                             </div>
                         </div>

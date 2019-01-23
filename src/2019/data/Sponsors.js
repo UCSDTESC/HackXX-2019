@@ -1,7 +1,7 @@
 const pastSponsors = [
     {
         name: 'Northrop Grumman',
-        logo: '/sponsors/ng.jpg',
+        logo: '/sponsors/northrop-grumman.svg',
         link: 'http://www.northropgrumman.com/Pages/default.aspx'
     },
     {
@@ -26,12 +26,12 @@ const pastSponsors = [
     },
     {
         name: "Jacob's School of Engineering - ECE Dept",
-        logo: '/sponsors/ece.jpg',
+        logo: '/sponsors/jsoe.svg',
         link: 'https://ece.ucsd.edu'
     },
     {
         name: "Jacob's School of Engineering - CSE Dept",
-        logo: '/sponsors/cse.jpg',
+        logo: '/sponsors/cse.png',
         link: 'https://cse.ucsd.edu'
     }
 ]
