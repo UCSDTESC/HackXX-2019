@@ -93,7 +93,6 @@ class Hero extends Component {
     render() {
         return (
                 <HeroSection >
-                    <Nav />
                     <div className="align-items-center justify-content-center d-flex pt-5" id="hero">
                         <div className="container-fluid align-items-center justify-content-center d-flex mt-5" >
                             <Container className="row w-100">

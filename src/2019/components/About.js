@@ -69,7 +69,7 @@ class About extends Component {
         const {DATA_ENTRANCE_DELAY} = AboutConstants;
 
         return (
-            <AboutSection>
+            <AboutSection id="about">
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
                         <OffsetSeaweedStem></OffsetSeaweedStem>

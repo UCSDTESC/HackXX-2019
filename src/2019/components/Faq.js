@@ -74,7 +74,7 @@ class FAQ extends Component {
 
     render() {
         return (
-            <FaqSection>
+            <FaqSection id="faq">
                 <Container className="d-flex mx-auto">
                     <SeaweedContainer className="flex-column">
                         <FaqSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>

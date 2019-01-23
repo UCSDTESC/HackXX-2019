@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
+import {withRouter} from 'react-router-dom';
 
+import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
 import Involved from './components/Involved';
@@ -13,6 +16,7 @@ class HackXX2019Page extends Component {
     render() {
         return (
             <>
+                <Nav />
                 <Hero />
                 <About />
                 <Involved />
@@ -25,4 +29,4 @@ class HackXX2019Page extends Component {
     }
 }
 
-export default HackXX2019Page;
+export default withRouter(HackXX2019Page);

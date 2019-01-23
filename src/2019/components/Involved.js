@@ -58,7 +58,7 @@ class Involved extends Component {
 
     render() {
         return (
-            <InvolvedSection>
+            <InvolvedSection id="involved">
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
                         <InvolvedSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>

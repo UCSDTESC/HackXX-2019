@@ -3,111 +3,111 @@ import styled from 'styled-components';
 import $ from 'jquery';
 
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem 
-} from 'reactstrap';
+    PURPLE
+} from '../constants'
 
-const NavContainer = styled(Navbar)`
+import {Link, withRouter} from 'react-router-dom';
+
+const NavContainer = styled.nav`
     background: transparent;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
+    padding: 1rem 10%;
 
     transition: background 0.2s ease-in;
+`
+
+const NavLink = styled.a`
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: ${PURPLE};
+    text-align: center;
+    margin: 0.2rem;
+`
+const NavLogo = styled.img`
+    max-width: 8rem;
 `
 
 class HackXXNav extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            isOpen: false
-        }
-
-        this.toggle = this.toggle.bind(this)
+        this.clickScroll = this.clickScroll.bind(this);
     }
 
     componentDidMount() {
         let _nav = $("#top-nav");
         const SCROLL_TRESHOLD = 2 * _nav.height();
-        let _this = this;
         $(window).scroll(function () {
             if ($(this).scrollTop() > SCROLL_TRESHOLD) { 
                 //make nav white when below treshold
                 _nav.addClass('bg-white shadow');
             } else {
                 //make nav transparent only if the nav is collapsed
-                if ($(window).width() > 768 || !_this.state.isOpen) {
+                if ($(window).width() > 768 || $('.navbar-toggler').attr('aria-expanded') === "false") {
                     _nav.removeClass('bg-white shadow');
                 }
             }
         });
+
+        $('.navbar-toggler').on('click', (e) => {
+            if ($(this).scrollTop() < SCROLL_TRESHOLD) {
+                if (_nav.hasClass('nav__white')) {
+                    _nav.removeClass('nav__white')
+                }
+                else {
+                    _nav.addClass('nav__white');
+                }
+            } 
+        });
     }
 
-    toggle() {
+    clickScroll(e) {
+        e.preventDefault();
+        const {hash} = e.target
 
-        let _nav = $("top-nav");
-        const SCROLL_TRESHOLD = 2 * _nav.height();
+        const OFFSET = $('nav').height() + 35
 
-        if (_nav.scrollTop() < SCROLL_TRESHOLD) {
-            if (_nav.hasClass('nav__white')) {
-                _nav.removeClass('nav__white')
-            }
-            else {
-                _nav.addClass('nav__white');
-            }
+        if (!$(hash).offset()) return;
+        if (hash) {
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - OFFSET 
+            }, 450);
         }
-
-        this.setState({isOpen: !this.state.isOpen})
     }
 
     render() {
         return (
-            <div>
-                <NavContainer expand="md" id="top-nav">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                        </NavItem>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                            Options
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                            <DropdownItem>
-                                Option 1
-                            </DropdownItem>
-                            <DropdownItem>
-                                Option 2
-                            </DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>
-                                Reset
-                            </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                        </Nav>
-                    </Collapse>
-                    </NavContainer>
-            </div>
+            <NavContainer className="navbar navbar-expand-lg navbar-light" id="top-nav">
+                <NavLogo src="/logo_text.svg"/>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon" />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <NavLink className="nav-link" href="#about" onClick={this.clickScroll}>About</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" href="#involved" onClick={this.clickScroll}>Get Involved</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" href="#schedule" onClick={this.clickScroll}>Schedule</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" href="#faq" onClick={this.clickScroll}>FAQ</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" href="#sponsors" onClick={this.clickScroll}>Sponsors</NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </NavContainer>
         )
     }
 }
 
-export default HackXXNav;
+export default withRouter(HackXXNav);

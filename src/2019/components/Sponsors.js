@@ -47,7 +47,7 @@ class Sponsors extends Component {
 
     render() {
         return (
-            <SponsorsSection>
+            <SponsorsSection id="sponsors">
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
                         <SponsorsSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>

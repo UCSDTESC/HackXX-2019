@@ -33,7 +33,7 @@ const PaddedRow = styled.div`
 class Schedule extends Component {
     render() {
         return (
-            <ScheduleSection>
+            <ScheduleSection id="schedule">
                 <Container className="d-flex mx-auto h-100">
                     <SeaweedContainer className="flex-column">
                         <ScheduleSymbol className="align-self-start flex-shrink-1 w-100 mb-0"/>
