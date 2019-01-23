@@ -4,7 +4,8 @@ import 'bootstrap/dist/js/bootstrap';
 
 import {
     BORDER_RADIUS,
-    PURPLE
+    PURPLE,
+    LIGHT_BLUE
 } from '../constants';
 
 const QuestionContainer = styled.div`
@@ -31,10 +32,19 @@ const QuestionContainer = styled.div`
 
 const QuestionContent = styled.div`
     background: white;
-    color: ${PURPLE};
+    color: black;
     text-decoration: none;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1rem 2rem;
+`
+
+const QuestionText = styled.a`
+    color: ${PURPLE};
+    text-decoration: none;
+
+    &:hover {
+        color: ${LIGHT_BLUE}
+    }
 `
 
 class Question extends Component {
@@ -55,10 +65,10 @@ class Question extends Component {
                     <div className="panel panel-default">
                         <div className="panel-heading" id={`heading-${idx}`} role="tab">
                             <QuestionContainer className="panel-title" isLast={isLast} isFirst={isFirst}>
-                                <a className="collapsed w-100 d-block text-center" role="button" data-toggle="collapse" data-parent="#accordion" href={`#collapse-${idx}`} aria-expanded="false" aria-controls={`collapse-${idx}`}>
+                                <QuestionText className="collapsed w-100 d-block text-center" role="button" data-toggle="collapse" data-parent="#accordion" href={`#collapse-${idx}`} aria-expanded="false" aria-controls={`collapse-${idx}`}>
                                     {question}
                                 <i className="pull-right fa fa-plus float-right mt-1 question__icon"></i>
-                                </a>
+                                </QuestionText>
                                 <QuestionContent className="panel-collapse collapse mt-3" id={`collapse-${idx}`} role="tabpanel" aria-labelledby={`heading-${idx}`}>
                                     <div className="panel-body">
                                         <p className="mb-0">

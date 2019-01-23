@@ -3,7 +3,6 @@ import {mediaBreakpointDown} from '../breakpoints';
 
 export const Page = styled.section`
     width: 100%;
-    height: 100%;
 `
 export const Container = styled.div`
     max-width: 80%;
@@ -54,6 +53,7 @@ export const SectionContent = styled.div`
     padding-left: 2rem;
     font-size: 1.3rem;
     color: white;
+    margin-bottom: 50px;
 
     ${mediaBreakpointDown('sm', `
         padding-left: 0;

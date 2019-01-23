@@ -28,7 +28,8 @@ const NavLink = styled.a`
     margin: 0.2rem;
 `
 const NavLogo = styled.img`
-    max-width: 8rem;
+    width: 8rem;
+    //margin-left: calc(25% - 4rem)
 `
 
 class HackXXNav extends Component {

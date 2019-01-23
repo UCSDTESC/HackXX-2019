@@ -1,27 +1,59 @@
+import React from 'react';
+
 const faq = [
     {
         question: `What's a Hackathon?`,
-        answer: 'A hackathon is an event where people come together in teams to collaborate on tech projects with a given amount of time, in this case, 24 hours. Prizes are awarded at the end!'
+        answer: "A hackathon is an technology-focused, design sprint-like event during which participants create new projects in a short amount of time. Participants may work individually or in teams, and you can create any type of project that you would like! "
     },
     {
-        question: `Who can come?`,
-        answer: 'HackXX is a safe place where all genders are welcome to participate. We would like to encourage women, transgender, gender non conforming women, gender queer people, and non-binary folks to attend. Must be 18 years old and over.'
+        question: `Do I need to have a project idea?`,
+        answer: `You do not have to have a project idea beforehand, you can brainstorm and get inspiration during the event! We will also hold technical workshops to give you a starting point!`
     },
     {
-        question: `Why host a women-centered hackathon?`,
-        answer: 'Only 20% of hackathon participants are women. We want to build a welcoming environment to encourage women to build cool things.'
+        question: `Why are you hosting HackXX?`,
+        answer: (
+            <div>
+                There is currently a huge gender disparity within the realm of tech and engineering. At most hackathons, women make up only 20% of the total participants, and only 24% of professional computer scientists are women. This gender gap has actually been growing since the 1980’s, and this needs to change. We believe that HackXX is a step towards achieving better gender representation in the tech space.
+                
+                <div className="mt-3">
+                    <div>
+                        <a target="_blank" href="https://medium.com/ladies-storm-hackathons/the-gender-gap-as-told-by-data-71dfce420519" className="text-info">
+                            Ladies Storm Hackathons - The Gender Gap, As Told by Data
+                        </a>
+                    </div>
+                    <div className="mt-2">
+                        <a target="_blank" href="https://fairygodboss.com/articles/women-in-tech-facts-figures-and-percentages" className="text-info">
+                            Fairygodboss - Women In Tech: Facts, Figures And Percentages
+                        </a>
+                    </div>
+                    <div className="mt-2">
+                        <a target="_blank" href="https://girlswhocode.com/about-us/ " className="text-info">
+                            Girls Who Code
+                        </a>
+                    </div>
+
+                </div>    
+            </div>)
+    },
+    {
+        question: `Who can go to HackXX?`,
+        answer: 'All highschool students and undergraduate students over 18 of any and all gender identities are welcome to attend.'
     },  
     {
+        question: 'How long is HackXX?',
+        answer: 'The hacking period is 24 hours long.'
+    },
+    /*{
         question: 'Will there be travel reimbursement?',
         answer: 'We will not be reimbursing travel costs exceeding $50. This cap is intended to cover the cost of local travel. A form will be sent to attendees after the event for requesting reimbursement.'
-    },  
+    },*/
     {
-        question: `Do I need to be an engineering student?`,
-        answer: 'Nope, all majors are welcome!'
-    },  
+        question: 'I’m not a CS major. Can I still go?',
+        answer: 'Yes! We welcome students of all majors and backgrounds.'
+    },
     {
         question: `Will there be food?`,
-        answer: `Yes, we'll have free food! Dinner on Saturday and all meals on Sunday will be provided, as well as snacks throughout the event.`
+        answer: `Yes! We will provide meals for all hackers as well as snacks throughout the length of the event.`
     },  
     {
         question: 'What is the maximum team size?',

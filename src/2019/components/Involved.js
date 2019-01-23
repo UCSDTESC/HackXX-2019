@@ -73,9 +73,6 @@ class Involved extends Component {
                                 <div className="col-md-8">
                                     <SectionHeader>Get Involved</SectionHeader>
                                 </div>
-                                <div className="col-md-4">
-                                    <InlineMermaid as={TealMermaid} />
-                                </div>
                             </div>
 
                             {/* Register blurb and button */}

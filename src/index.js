@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import 'scroll-entrance/dist/scroll-entrance';
 import 'bootstrap/dist/css/bootstrap.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 import './index.css';
 
 import Routes from './Routes';
