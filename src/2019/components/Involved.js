@@ -101,9 +101,9 @@ class Involved extends Component {
                                 <div className="col-md-auto">
                                     <WhiteButton className="btn btn-outline-light" href="https://tesc.typeform.com/to/wnhOgj" target="_blank">mentor</WhiteButton>
                                 </div>
-                                <div className="col-md-auto">
+                                {/*<div className="col-md-auto">
                                     <WhiteButton className="btn btn-outline-light" href="/sponsorship-packet.pdf" target="_blank">sponsor</WhiteButton>
-                                </div>
+                                </div>*/}
                             </div>
                         </div>
 
