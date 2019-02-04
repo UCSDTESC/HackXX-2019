@@ -74,7 +74,7 @@ class Footer extends Component {
                 <ContentSection className="contact" id="contact">
                     <div className="container-fluid d-flex align-items-center h-100">
                         <ContactHeader className="m-auto">
-                            Talk to us at <a className="contact__link" href="mailto:hello@tesc.ucsd.edu">hello@tesc.ucsd.edu</a> if you have any questions.
+                            Talk to us at <a className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</a> if you have any questions.
                         </ContactHeader>
                     </div>
                 </ContentSection>
