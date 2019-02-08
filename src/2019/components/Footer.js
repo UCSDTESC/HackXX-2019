@@ -61,7 +61,7 @@ const FooterLinkItem = styled.li`
     &:not(:first-child) {
       margin-top: 1rem;
 
-      ${mediaBreakpointDown('sm', `
+      ${mediaBreakpointDown('md', `
         margin-top: 0;
      `)}
     }
