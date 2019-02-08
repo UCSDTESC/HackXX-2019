@@ -77,7 +77,15 @@ const FooterLink = styled.a`
     }
 `
 const FooterLogo = styled.img`
+    display: block;
+    margin: auto;
+
     width: 50%;
+
+    @include media-breakpoint-up(md) {
+        padding: 1em;
+        width: 20%;
+    }
 `
 
 class Footer extends Component {
