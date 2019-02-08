@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 import {
+    LIGHT_BLUE,
+    LIGHT_BLUE_HOVER,
     PURPLE,
     Schedule as ScheduleConstants
 } from '../constants';
@@ -34,6 +36,10 @@ const ContactHeader = styled.h1`
     line-height: 1.7;
 `
 
+const ContactLink = styled.a`
+    color: black;
+`
+
 const FooterContainer = styled.footer`
     margin: 3rem 0 3rem;
 `
@@ -61,7 +67,11 @@ const FooterLinkItem = styled.li`
 `
 
 const FooterLink = styled.a`
-    color: ${PURPLE} !important;
+    color: ${LIGHT_BLUE} !important;
+
+    &:hover {
+        color: ${LIGHT_BLUE_HOVER} !important;
+    }
 
     i {
     }
@@ -74,7 +84,7 @@ class Footer extends Component {
                 <ContentSection className="contact" id="contact">
                     <div className="container-fluid d-flex align-items-center h-100">
                         <ContactHeader className="m-auto">
-                            Talk to us at <a className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</a> if you have any questions.
+                            Talk to us at <ContactLink className="contact__link" as="a" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</ContactLink> if you have any questions.
                         </ContactHeader>
                     </div>
                 </ContentSection>
@@ -82,18 +92,18 @@ class Footer extends Component {
                     <div className="container-fluid">
                         <FooterLinks className="flex-column ml-md-auto d-flex flex-md-row justify-content-between text-center text-md-left">
                             <FooterLinkItem>
-                                <FooterLink target="_new" href="https://www.facebook.com/SDHacks/">
+                                <FooterLink target="_new" href="https://www.facebook.com/ucsd.tesc/">
                                 <i className="fab fa-facebook-square" />
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem>
-                                <FooterLink target="_new" href="https://twitter.com/SDHacks">
+                                <FooterLink target="_new" href="https://twitter.com/ucsdtesc">
                                 <i className="fab fa-twitter-square" />
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem isLogo={true}>
                                 <FooterLink href="http://tesc.ucsd.edu" target="_new">
-                                <img src="/tesc-logo.png" />
+                                <img src="/tesc-logo.svg" />
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem>
