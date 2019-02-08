@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {mediaBreakpointDown} from '../../breakpoints';
 
 import {
     LIGHT_BLUE,
-    LIGHT_BLUE_HOVER,
     PURPLE,
     Schedule as ScheduleConstants
 } from '../constants';
@@ -61,9 +61,9 @@ const FooterLinkItem = styled.li`
     &:not(:first-child) {
       margin-top: 1rem;
 
-      @include media-breakpoint-up(md) {
-        margin-top: 0;
-      }
+      ${mediaBreakpointDown('sm', `
+        text-align: center;
+     `)}
     }
 
     ${props => props.isLogo && `
@@ -82,10 +82,10 @@ const FooterLogo = styled.img`
 
     width: 50%;
 
-    @include media-breakpoint-up(md) {
+    ${mediaBreakpointDown('md', `
         padding: 1em;
-        width: 20%;
-    }
+        width: 50%;
+     `)}
 `
 
 class Footer extends Component {
