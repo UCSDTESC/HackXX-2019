@@ -37,7 +37,11 @@ const ContactHeader = styled.h1`
 `
 
 const ContactLink = styled.a`
-    color: black;
+    color: ${LIGHT_BLUE};
+
+    &:hover {
+        color: ${LIGHT_BLUE} !important;
+    }
 `
 
 const FooterContainer = styled.footer`
@@ -67,14 +71,13 @@ const FooterLinkItem = styled.li`
 `
 
 const FooterLink = styled.a`
-    color: ${LIGHT_BLUE} !important;
-
-    &:hover {
-        color: ${LIGHT_BLUE_HOVER} !important;
-    }
+    color: ${PURPLE} !important;
 
     i {
     }
+`
+const FooterLogo = styled.img`
+    width: 50%;
 `
 
 class Footer extends Component {
@@ -103,7 +106,7 @@ class Footer extends Component {
                             </FooterLinkItem>
                             <FooterLinkItem isLogo={true}>
                                 <FooterLink href="http://tesc.ucsd.edu" target="_new">
-                                <img src="/tesc-logo.svg" />
+                                    <FooterLogo src="/tesc-logo.svg"></FooterLogo>
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem>

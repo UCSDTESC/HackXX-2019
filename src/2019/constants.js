@@ -1,5 +1,3 @@
-export const LIGHT_BLUE_HOVER = '#3199AF';
-
 export const LIGHT_BLUE = '#43D2F0';
 
 export const PURPLE = '#8E44AD';
