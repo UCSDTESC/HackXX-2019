@@ -62,7 +62,7 @@ const FooterLinkItem = styled.li`
       margin-top: 1rem;
 
       ${mediaBreakpointDown('sm', `
-        text-align: center;
+        margin-top: 0;
      `)}
     }
 
