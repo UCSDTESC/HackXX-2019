@@ -62,6 +62,14 @@ const faq = [
     {
         question: `What if I don't have a team?`,
         answer: 'We will facilitate a team mixer at the beginning of the hackathon for you to find team members! However, if you know you want to hack alone, you are more than welcome to do so.'
+    }, 
+    {
+        question: `Is there a Code of Conduct?`,
+        answer: (
+            <div>
+                Yes! HackXX follows the <a target="_blank" href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code Of Conduct</a>
+            </div>
+        )
     }
 ]
 
