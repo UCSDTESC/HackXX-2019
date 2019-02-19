@@ -37,11 +37,7 @@ const ContactHeader = styled.h1`
 `
 
 const ContactLink = styled.a`
-    color: ${LIGHT_BLUE};
-
-    &:hover {
-        color: ${LIGHT_BLUE} !important;
-    }
+    color: ${LIGHT_BLUE} !important;
 `
 
 const FooterContainer = styled.footer`
@@ -95,7 +91,7 @@ class Footer extends Component {
                 <ContentSection className="contact" id="contact">
                     <div className="container-fluid d-flex align-items-center h-100">
                         <ContactHeader className="m-auto">
-                            Talk to us at <ContactLink className="contact__link" as="a" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</ContactLink> if you have any questions.
+                            Talk to us at <ContactLink className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</ContactLink> if you have any questions.
                         </ContactHeader>
                     </div>
                 </ContentSection>
