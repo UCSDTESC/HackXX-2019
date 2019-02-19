@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {mediaBreakpointDown} from '../../breakpoints';
 
 import {
+    LIGHT_BLUE,
     PURPLE,
     Schedule as ScheduleConstants
 } from '../constants';
@@ -34,6 +36,10 @@ const ContactHeader = styled.h1`
     line-height: 1.7;
 `
 
+const ContactLink = styled.a`
+    color: ${LIGHT_BLUE} !important;
+`
+
 const FooterContainer = styled.footer`
     margin: 3rem 0 3rem;
 `
@@ -51,9 +57,9 @@ const FooterLinkItem = styled.li`
     &:not(:first-child) {
       margin-top: 1rem;
 
-      @include media-breakpoint-up(md) {
+      ${mediaBreakpointDown('md', `
         margin-top: 0;
-      }
+     `)}
     }
 
     ${props => props.isLogo && `
@@ -66,6 +72,17 @@ const FooterLink = styled.a`
     i {
     }
 `
+const FooterLogo = styled.img`
+    display: block;
+    margin: auto;
+
+    width: 50%;
+
+    ${mediaBreakpointDown('md', `
+        padding: 1em;
+        width: 50%;
+     `)}
+`
 
 class Footer extends Component {
     render() {
@@ -74,7 +91,7 @@ class Footer extends Component {
                 <ContentSection className="contact" id="contact">
                     <div className="container-fluid d-flex align-items-center h-100">
                         <ContactHeader className="m-auto">
-                            Talk to us at <a className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</a> if you have any questions.
+                            Talk to us at <ContactLink className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</ContactLink> if you have any questions.
                         </ContactHeader>
                     </div>
                 </ContentSection>
@@ -82,18 +99,18 @@ class Footer extends Component {
                     <div className="container-fluid">
                         <FooterLinks className="flex-column ml-md-auto d-flex flex-md-row justify-content-between text-center text-md-left">
                             <FooterLinkItem>
-                                <FooterLink target="_new" href="https://www.facebook.com/SDHacks/">
+                                <FooterLink target="_new" href="https://www.facebook.com/ucsd.tesc/">
                                 <i className="fab fa-facebook-square" />
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem>
-                                <FooterLink target="_new" href="https://twitter.com/SDHacks">
+                                <FooterLink target="_new" href="https://twitter.com/ucsdtesc">
                                 <i className="fab fa-twitter-square" />
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem isLogo={true}>
                                 <FooterLink href="http://tesc.ucsd.edu" target="_new">
-                                <img src="/tesc-logo.png" />
+                                    <FooterLogo src="/tesc-logo.svg"></FooterLogo>
                                 </FooterLink>
                             </FooterLinkItem>
                             <FooterLinkItem>

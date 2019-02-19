@@ -20,6 +20,7 @@ import {
 } from '../styles';
 
 import {
+    LIGHT_BLUE,
     Faq as FaqConstants, Faq,
 } from '../constants';
 
@@ -27,6 +28,10 @@ const FaqSection = styled(Page)`
     background: ${FaqConstants.gradient};
     height: auto;
 `
+const FaqContactLink = styled.a`
+    color: ${LIGHT_BLUE} !important;
+`
+
 class FAQ extends Component {
 
     constructor(props) {
@@ -105,7 +110,7 @@ class FAQ extends Component {
                                 </div>
                             </div>
                             <div className="text-center text-white w-100">
-                                Got any other questions? Email us at <a href="mailto:hello@sdhacks.io"> {' '} hello@sdhacks.io</a>! (Yep, we're affiliated with SD Hacks)
+                                Got any other questions? Email us at <FaqContactLink href="mailto:hello@sdhacks.io"> {' '} hello@sdhacks.io! </FaqContactLink>(Yep, we're affiliated with SD Hacks)
                             </div>
                             <FaqFooter className="w-100"/>
                         </div>
