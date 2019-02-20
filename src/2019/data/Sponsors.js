@@ -5,16 +5,6 @@ const pastSponsors = [
         link: 'http://www.northropgrumman.com/Pages/default.aspx'
     },
     {
-        name: 'Cisco',
-        logo: '/sponsors/cisco.svg',
-        link: 'https://cisco.com'
-    },
-    {
-        name: 'GitHub',
-        logo: '/sponsors/git.png',
-        link: 'https://github.com'
-    },
-    {
         name: 'Amazon',
         logo: '/sponsors/amazon.png',
         link: 'https://amazon.com'
@@ -36,4 +26,33 @@ const pastSponsors = [
     }
 ]
 
-export {pastSponsors}
+const tierOneSponsor = [
+    {
+        name: 'Cisco',
+        logo: '/sponsors/cisco.svg',
+        link: 'https://cisco.com'
+    }
+].map(x => ({...x, tier: 0}));
+
+const tierTwoSponsor = [
+    {
+        name: 'GitHub',
+        logo: '/sponsors/git.png',
+        link: 'https://github.com'
+    },
+    {
+        name: 'Surcle',
+        logo: '/sponsors/surcle.png',
+        link: 'https://surcle.io'
+    }
+].map(x => ({...x, tier: 1}));
+
+const sponsors =  [
+    ...tierOneSponsor,
+    ...tierTwoSponsor
+]
+
+export {
+    pastSponsors,
+    sponsors
+}

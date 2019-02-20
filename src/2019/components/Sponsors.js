@@ -14,7 +14,7 @@ import {
     Sponsor as SponsorsConstants
 } from '../constants';
 
-import {pastSponsors} from '../data/Sponsors.js'
+import {pastSponsors, sponsors} from '../data/Sponsors.js'
 
 const SponsorsSection = styled(Page)`
     background: ${SponsorsConstants.gradient};
@@ -25,7 +25,6 @@ const SponsorsSection = styled(Page)`
 const SponsorContainer = styled.a`
     
     transition: all 0.3s ease-in-out;
-    
     &:hover {
         transform-origin: center;
         transform: scale(0.9)
@@ -33,17 +32,18 @@ const SponsorContainer = styled.a`
 `
 
 function Sponsor(props) {
+    const col = props.col || 'col-md-4 col-lg-4';
     return (
-        <SponsorContainer className="col-md-4 col-lg-4 my-5 d-block" href={props.link}>
-            <img src={props.logo} className="img-fluid d-block my-auto"/>
+        <SponsorContainer className={`${col} my-5 d-block`} href={props.link}>
+            <img src={props.logo} className="img-fluid d-block m-auto"/>
         </SponsorContainer>
     )
 }
 
 class Sponsors extends Component {
-
-    renderSponsors() {
-        return pastSponsors.map(p => <Sponsor {...p}/>)
+    renderSponsors(currSponsors) {
+        const COL_LENS = ['col-md-12 col-lg-12', 'col-md-6 col-lg-6', 'col-md-4 col-md-4'];
+        return currSponsors.map(p => <Sponsor {...p} col={COL_LENS[p.tier]}/>)
     }
 
     render() {
@@ -58,10 +58,16 @@ class Sponsors extends Component {
                     <SectionContent>
                         <div className="container-fluid">
                             <div className="row">
+                                <SectionHeader>Sponsors</SectionHeader>
+                            </div>
+                            <div className="row align-items-center justify-content-center">
+                                {this.renderSponsors(sponsors)}
+                            </div>
+                            <div className="row">
                                 <SectionHeader>Past Sponsors</SectionHeader>
                             </div>
                             <div className="row align-items-center justify-content-center">
-                                {this.renderSponsors()}
+                                {this.renderSponsors(pastSponsors)}
                             </div>
                         </div>
                     </SectionContent>
