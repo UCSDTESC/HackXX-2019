@@ -92,9 +92,9 @@ class Hero extends Component {
 
     render() {
         return (
-                <HeroSection >
-                    <div className="align-items-center justify-content-center d-flex pt-5" id="hero">
-                        <div className="container-fluid align-items-center justify-content-center d-flex mt-5" >
+                <HeroSection className="align-items-center justify-content-center d-flex pt-5">
+                    <div className="align-items-center justify-content-center d-flex w-100" id="hero">
+                        <div className="container-fluid align-items-center justify-content-center d-flex mt-5" style={{minHeight:'100%'}} >
                             <Container className="row w-100">
                                 <div className="col-md-6 align-items-center d-flex justify-content-center flex-column">
                                     <HeroImage src="/logo.gif" className="img-fluid" />

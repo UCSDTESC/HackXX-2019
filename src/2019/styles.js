@@ -86,3 +86,18 @@ export const WhiteButton = styled.a`
         margin-bottom: 1rem;
     `)}
 `
+
+export const Badge = styled.a`
+    display:block;
+    max-width:80px;
+    min-width:60px;
+    position:fixed;
+    right: 1rem;
+    top:0;
+    width:10%;
+    z-index:10000;
+
+    ${mediaBreakpointDown('lg', `
+        left: 0rem;
+    `)}
+`

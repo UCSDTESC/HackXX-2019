@@ -7,6 +7,7 @@ import {
 } from '../constants'
 
 import {Link, withRouter} from 'react-router-dom';
+import { mediaBreakpointDown } from '../../breakpoints';
 
 const NavContainer = styled.nav`
     background: transparent;
@@ -29,7 +30,11 @@ const NavLink = styled.a`
 `
 const NavLogo = styled.img`
     width: 8rem;
-    //margin-left: calc(25% - 4rem)
+    ${mediaBreakpointDown('md', `
+        content: url('/favicon.png');
+        width: 2.4rem;
+        margin-left: calc(50% - 1.2rem);
+    `)}
 `
 
 class HackXXNav extends Component {

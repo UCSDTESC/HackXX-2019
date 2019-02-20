@@ -90,7 +90,7 @@ class About extends Component {
                                 <SectionHeader> Why should I go to HackXX? </SectionHeader>
                             </div>
                             <div className="row">
-                                HackXX is for students of all races, gender, and sexuality.
+                                HackXX is for students of all races, genders, and sexualities.
                             </div>
 
                             <div className="row my-5">
