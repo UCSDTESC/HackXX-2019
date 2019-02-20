@@ -34,6 +34,12 @@ const ContactHeader = styled.h1`
     color: white;
     z-index: 2;
     line-height: 1.7;
+
+    ${mediaBreakpointDown('sm', `
+        font-size: 2rem;
+    `)}
+
+
 `
 
 const ContactLink = styled.a`
