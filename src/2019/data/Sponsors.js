@@ -27,24 +27,30 @@ const pastSponsors = [
 ]
 
 const tierOneSponsor = [
-    {
-        name: 'Cisco',
-        logo: '/sponsors/cisco.svg',
-        link: 'https://cisco.com'
-    }
+
 ].map(x => ({...x, tier: 0}));
 
 const tierTwoSponsor = [
     {
-        name: 'GitHub',
-        logo: '/sponsors/git.png',
-        link: 'https://github.com'
+        name: 'ServiceNow',
+        logo: '/sponsors/snow.png'
+    },
+    {
+        name: 'Cisco',
+        logo: '/sponsors/cisco.svg',
+        link: 'https://cisco.com'
     },
     {
         name: 'Surcle',
         logo: '/sponsors/surcle.png',
         link: 'https://surcle.io'
-    }
+    },
+
+    {
+        name: 'GitHub',
+        logo: '/sponsors/git.png',
+        link: 'https://github.com'
+    },
 ].map(x => ({...x, tier: 1}));
 
 const sponsors =  [
