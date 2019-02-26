@@ -6,7 +6,7 @@ import moment from 'moment';
 import ScheduleEvent from './ScheduleEvent';
 
 import {
-    BORDER_RADIUS
+    BORDER_RADIUS, LIGHT_BLUE
 } from '../../constants';
 
 import {
@@ -18,7 +18,7 @@ import {
     CAL_WIDTH,
     CAL_BG,
     GRADIENT_OFFSET,
-    VERTICAL_HOUR_LINE_WIDTH 
+    VERTICAL_HOUR_LINE_WIDTH
 } from '../constants';
 
 const Search = styled.input`
@@ -74,8 +74,8 @@ const Calendar = styled.div`
         to right,
         ${CAL_BG},
         ${CAL_BG} ${GRADIENT_OFFSET}px,
-        white ${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH }px,
-        ${CAL_BG} ${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH }px,
+        ${LIGHT_BLUE} ${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH}px,
+        ${CAL_BG} ${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH}px,
         ${CAL_BG} ${HOUR_WIDTH}px
     );
 `
@@ -154,13 +154,15 @@ class Schedule extends Component {
     }
     
     renderRows = () => {
+        const {records} = this.state;
         
-        return (
+        return records.map(r => (
             <ScheduleEvent 
                 duration={4}
                 startsAt={8}
+                event={r}
             />
-        )
+        ))
     }
 
     render() {

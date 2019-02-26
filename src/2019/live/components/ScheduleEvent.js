@@ -4,23 +4,30 @@ import styled from 'styled-components';
 import {
     HOUR_WIDTH,
     GRADIENT_OFFSET,
-    VERTICAL_HOUR_LINE_WIDTH 
+    VERTICAL_HOUR_LINE_WIDTH,
+    CAL_BG
 } from '../constants';
+
+const LineContainer = styled.div`
+    width: ${props => props.duration ? 
+        `${props.duration * HOUR_WIDTH}px` : 
+        `0px`
+    };
+    position: absolute;
+    left: ${props => props.startsAt ? 
+        `${(props.startsAt * HOUR_WIDTH) + GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH}px` :
+        `${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH / 2}px;`
+    };
+    color: black;
+    font-weight: bolder;
+    font-size: 1rem;
+`
 
 const Line = styled.div`
     background: red;
-    position: absolute;
     height: 4px;
-    width: ${props => props.duration ? 
-        `${props.duration * HOUR_WIDTH}px` : 
-        `${HOUR_WIDTH}px`
-    };
-    
-    left: ${props => props.startsAt ? 
-        `${(props.startsAt * HOUR_WIDTH) + GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH / 2}px` :
-        `${GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH / 2}px;`
-    };
-
+    width: 100%;
+    margin-top: 0.5rem;
     &::before {
         content: '';
         display: inline-block;
@@ -29,7 +36,7 @@ const Line = styled.div`
         background: red;
         position: absolute;
         left: -5px;
-        top: -3px;
+        bottom: -3px;
         border-radius: 50%;
     }
 
@@ -41,7 +48,7 @@ const Line = styled.div`
         background: red;
         position: absolute;
         right: -5px;
-        top: -3px;
+        bottom: -3px;
         border-radius: 50%; 
     }
 `
@@ -49,12 +56,17 @@ const Line = styled.div`
 class ScheduleEvent extends Component {
 
     render() {
-        const {startsAt, duration} = this.props;
-
-        return <Line 
-            startsAt={startsAt}
-            duration={duration}
-        />
+        const {startsAt, duration, event} = this.props;
+        console.log();
+        return (
+            <LineContainer
+                startsAt={startsAt}
+                duration={duration}
+            >
+                {event.get('title')}
+                <Line />
+            </LineContainer>
+        )
     }
 }
 
