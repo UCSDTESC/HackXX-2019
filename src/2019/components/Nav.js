@@ -60,11 +60,12 @@ class HackXXNav extends Component {
         });
 
         $('.navbar-toggler').on('click', (e) => {
-            if ($(this).scrollTop() < SCROLL_TRESHOLD) {
+            if ($('.navbar-toggler').scrollTop() < SCROLL_TRESHOLD) {
                 if (_nav.hasClass('nav__white')) {
                     _nav.removeClass('nav__white')
                 }
                 else {
+                    console.log("here");
                     _nav.addClass('nav__white');
                 }
             } 

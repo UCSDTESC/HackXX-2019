@@ -33,7 +33,8 @@ const tierOneSponsor = [
 const tierTwoSponsor = [
     {
         name: 'ServiceNow',
-        logo: '/sponsors/snow.png'
+        logo: '/sponsors/snow.png',
+        link: 'https://servicenow.com'
     },
     {
         name: 'Cisco',

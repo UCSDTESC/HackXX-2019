@@ -56,6 +56,7 @@ const HeroGraphic = styled(HeroGraphicVector)`
 
 const CTA = styled(WhiteButton)`
     margin-top: 2rem;
+    margin-bottom: 2rem;
     padding:  0.5rem 1rem;
 
     &:hover {

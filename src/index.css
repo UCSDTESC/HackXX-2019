@@ -16,6 +16,9 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+.nav__white {
+  background: white !important;
+}
 
 /* Custom Entrance Animation */
 

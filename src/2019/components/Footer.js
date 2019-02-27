@@ -61,10 +61,10 @@ const FooterLinkItem = styled.li`
     //margin-left: 10%;
 
     &:not(:first-child) {
-      margin-top: 1rem;
+      margin-top: 0;
 
       ${mediaBreakpointDown('md', `
-        margin-top: 0;
+        margin-top: 1rem;
      `)}
     }
 
@@ -97,7 +97,7 @@ class Footer extends Component {
                 <ContentSection className="contact" id="contact">
                     <div className="container-fluid d-flex align-items-center h-100">
                         <ContactHeader className="m-auto">
-                            Talk to us at <ContactLink className="contact__link" href="mailto:sponsor@tesc.ucsd.edu">sponsor@tesc.ucsd.edu</ContactLink> if you have any questions.
+                            Talk to us at <ContactLink className="contact__link" href="mailto:hackxx@tesc.ucsd.edu">hackxx@tesc.ucsd.edu</ContactLink> if you have any questions.
                         </ContactHeader>
                     </div>
                 </ContentSection>

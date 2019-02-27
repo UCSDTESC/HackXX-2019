@@ -18,7 +18,8 @@ import {
     CAL_WIDTH,
     CAL_BG,
     GRADIENT_OFFSET,
-    VERTICAL_HOUR_LINE_WIDTH
+    VERTICAL_HOUR_LINE_WIDTH,
+    ROW_HEIGHT
 } from '../constants';
 
 const Search = styled.input`
@@ -49,7 +50,7 @@ const Legend  = styled.div`
 `
 
 const Main = styled.div`
-    height: 30rem;
+    //height: 30rem;
     background: ${CAL_BG};
     position: relative;
     overflow-x: auto;
@@ -68,6 +69,7 @@ const Calendar = styled.div`
     height: 100%;
     width: ${NUM_COLS * HOUR_WIDTH}px;
     color: white;
+    display: block;
     margin-top: 1rem;
     position: relative;
     background: repeating-linear-gradient(
@@ -92,28 +94,41 @@ const Times = styled.div`
     }
 `
 
+const Row = styled.div`
+    height: ${ROW_HEIGHT}px
+`;
+
+const Day = styled.div`
+`
+
 class Schedule extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            records: []
+            records: [],
+            rows: [[]]
         }
 
         this.base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_KEY })
                         .base('appY4r7VAncjUupmp')
 
         this.eventCategories = ['Main Events', 'Food', 'Workshops', 'Talks']
-        this.startTime = moment("2019-04-06T00");
+        this.startTime = moment("2019-04-06T17:00:00.000Z");
 
     }
 
     componentDidMount() {
-        this.base('Saturday')
+        this.base('Schedule')
             .select()
             .all()
-            .then(records => this.setState({records}))
+            .then(records => records.map(r => r._rawJson.fields))
+            .then(records => records.map((r) => ({
+                ...r, 
+                duration: moment(r.endTime).diff(moment(r.startTime), 'hours', true)
+            })))
+            .then(records => this.setState({records}, this.createScheduleRows))
     }
 
     renderTimes(day) {
@@ -123,7 +138,7 @@ class Schedule extends Component {
         }
 
         const startTime = {
-            'Fri': 15,
+            'Fri': 10,
             'Sat': 0
         }[day]
 
@@ -137,32 +152,64 @@ class Schedule extends Component {
 
         return (
             <span className="d-inline-block">
-                <div>
+                <Day>
                     {day}
-                </div>
+                </Day>
                 {times}
             </span>
         )
     }
 
     hoursSinceStartTime(date) {
-        return moment(date).diff(this.startTime);
+        return moment(date).diff(this.startTime, 'hours', true);
+    }
+
+    fits(row, record) {
+        for (let i = 0; i < row.length; i++) {
+            let currEvt = row[i];
+            if (currEvt['endTime'] >= record['endTime'] || currEvt['startTime'] >= record['startTime']) {
+                //console.log(currEvt, record)
+                return false;
+            }
+        }
+        return true;
     }
 
     createScheduleRows() {
-        
+        //TODO: Fix big where event to be added needs to be added to newly pushed row
+        let {records, rows} = this.state;
+        for (let i = 0;  i < records.length; i++) {
+            for (let rowNum = 0; rowNum < rows.length; rowNum++) {
+                console.log(records[i].title, rowNum);
+                if (this.fits(rows[rowNum], records[i])) {
+                    rows[rowNum].push(records[i]);
+                    break;
+                }
+                else {
+                    if (rowNum === rows.length - 1) {
+                        console.log('creating new..', records[i].title)
+                        rows.push([records[i]]);
+                        break;
+                    }
+                }
+            }
+        }
+        this.setState({rows})
     }
     
     renderRows = () => {
-        const {records} = this.state;
+        const {records, rows} = this.state;
         
-        return records.map(r => (
-            <ScheduleEvent 
-                duration={4}
-                startsAt={8}
-                event={r}
-            />
-        ))
+        return rows.map((row, rowIdx) => {
+            return (
+                <Row className="mb-3">
+                    {row.map(r => <ScheduleEvent
+                            startsAt={this.hoursSinceStartTime(r['startTime'])}
+                            event={r}
+                        />)}
+                </Row>
+            )
+        })
     }
 
     render() {
@@ -170,7 +217,6 @@ class Schedule extends Component {
         if (!this.state.records) {
             return <div>Loading....</div>
         }
-
         return (
             <Container className="w-100">
                 <Search placeholder="Search Here..."/>

@@ -56,14 +56,14 @@ const Line = styled.div`
 class ScheduleEvent extends Component {
 
     render() {
-        const {startsAt, duration, event} = this.props;
-        console.log();
+        const {startsAt, event} = this.props;
+        const duration = event.duration;
         return (
             <LineContainer
                 startsAt={startsAt}
                 duration={duration}
             >
-                {event.get('title')}
+                {event.title}
                 <Line />
             </LineContainer>
         )

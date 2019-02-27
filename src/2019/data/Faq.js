@@ -70,6 +70,10 @@ const faq = [
                 Yes! HackXX follows the <a target="_blank" href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">MLH Code Of Conduct</a>
             </div>
         )
+    },
+    {
+        question: `Do you have travel reimbursements?`,
+        answer: 'Yes! Once you are accepted, we will send you a form for applying for a travel reimbursement.'
     }
 ]
 
