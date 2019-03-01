@@ -11,4 +11,4 @@ export const CAL_WIDTH = (HOUR_WIDTH * NUM_COLS) + 2*CALENDAR_MARGIN;
 export const CAL_BG = PURPLE;
 export const GRADIENT_OFFSET = (HOUR_WIDTH / 4);
 export const VERTICAL_HOUR_LINE_WIDTH = 2;
-export const ROW_HEIGHT = 80;
+export const ROW_HEIGHT = 70;

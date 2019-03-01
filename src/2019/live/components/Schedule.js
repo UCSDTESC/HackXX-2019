@@ -37,6 +37,8 @@ const Container = styled.div`
     background: red;
     border-top-left-radius: ${BORDER_RADIUS};
     border-top-right-radius: ${BORDER_RADIUS};
+    border-bottom-left-radius: ${BORDER_RADIUS};
+    border-bottom-right-radius: ${BORDER_RADIUS};
 `
 
 const Legend  = styled.div`
@@ -54,6 +56,9 @@ const Main = styled.div`
     background: ${CAL_BG};
     position: relative;
     overflow-x: auto;
+    border: 0;
+    border-bottom-left-radius: ${BORDER_RADIUS};
+    border-bottom-right-radius: ${BORDER_RADIUS};
 
 `
 
@@ -107,19 +112,26 @@ class Schedule extends Component {
         super();
 
         this.state = {
+
+            // holds the raw data extracted from airtable
             records: [],
+
+            //holds the derived state from the airtable response
             rows: [[]]
         }
 
+        //reference to the Airtable API client
         this.base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_KEY })
                         .base('appY4r7VAncjUupmp')
 
         this.eventCategories = ['Main Events', 'Food', 'Workshops', 'Talks']
+
         this.startTime = moment("2019-04-06T17:00:00.000Z");
 
     }
 
     componentDidMount() {
+        //getting data from the Schedule table
         this.base('Schedule')
             .select()
             .all()
@@ -128,8 +140,10 @@ class Schedule extends Component {
                 ...r, 
                 duration: moment(r.endTime).diff(moment(r.startTime), 'hours', true)
             })))
+            //using this.setState's callback function to trigger the derived data build when we have records
             .then(records => this.setState({records}, this.createScheduleRows))
     }
+
 
     renderTimes(day) {
         const timeMap = {
@@ -160,15 +174,27 @@ class Schedule extends Component {
         )
     }
 
+    //helper function to get the hour index needed for ScheduleEvent's props
     hoursSinceStartTime(date) {
         return moment(date).diff(this.startTime, 'hours', true);
     }
 
+    // method to check if a given event fits in a given row
+
+
+    //maybe there's a better way to represent a row that makes this operation constant time?
+    //1) maybe we can ensure a row is always sorted and binary search? probably not worth
+    //2) some kind representation that can give you a 
+    //   row[record[startTime]] = (true or false) if it's vacant at that time?
+    //   then this function can be `return row.isFree(record[startTime]) && row.isFree(record[endTime])`
+    //   you can write a class for this data structure
+    //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
     fits(row, record) {
         for (let i = 0; i < row.length; i++) {
             let currEvt = row[i];
+
+            //there's a conflict in this row, does not fit
             if (currEvt['endTime'] >= record['endTime'] || currEvt['startTime'] >= record['startTime']) {
-                //console.log(currEvt, record)
                 return false;
             }
         }
@@ -176,30 +202,46 @@ class Schedule extends Component {
     }
 
     createScheduleRows() {
-        //TODO: Fix big where event to be added needs to be added to newly pushed row
         let {records, rows} = this.state;
+
+        //for every record...
         for (let i = 0;  i < records.length; i++) {
+
+            //go through all rows...
             for (let rowNum = 0; rowNum < rows.length; rowNum++) {
-                console.log(records[i].title, rowNum);
+
+                //if the record fits in the current row
                 if (this.fits(rows[rowNum], records[i])) {
+
+                    //add it to the row
                     rows[rowNum].push(records[i]);
+
+                    //we're done, go to the next record
                     break;
                 }
                 else {
+
+                    //we haven't found a row for this record and are at the 
+                    //end of all of our current rows, so we create a new row
                     if (rowNum === rows.length - 1) {
-                        console.log('creating new..', records[i].title)
+                        
+                        //add a row with the record as it's only event
                         rows.push([records[i]]);
+
+                        //we're done, go to next record
                         break;
                     }
                 }
             }
         }
+
+        //set row state, trigger re-render to show rows
         this.setState({rows})
     }
     
     renderRows = () => {
         const {records, rows} = this.state;
-        
+
         return rows.map((row, rowIdx) => {
             return (
                 <Row className="mb-3">
@@ -218,7 +260,7 @@ class Schedule extends Component {
             return <div>Loading....</div>
         }
         return (
-            <Container className="w-100">
+            <Container className="m-5 w-auto">
                 <Search placeholder="Search Here..."/>
                 <Legend>
                     {this.eventCategories.map(e => <span>{e}</span>)}

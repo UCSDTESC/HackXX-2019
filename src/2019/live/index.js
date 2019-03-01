@@ -6,15 +6,23 @@ import {
     Container
 } from '../styles';
 
+
+
 class Live extends Component {
 
     render() {
         return (
-            <Page className="bg-primary">
-                <Container className="d-flex mx-auto h-100">
-                    <Schedule />
-                </Container>
-            </Page>
+            <div className="container-fluid bg-primary">
+                <div className="row">
+                    <div className="col-md-8">
+                        <Schedule />
+                    </div>
+                    <div className="col-md-4">
+                        component to pull announcements from airtable and render them here - no designs yet so do whatever for now
+                    </div>
+                </div>
+
+            </div>
         )
     }
 }
