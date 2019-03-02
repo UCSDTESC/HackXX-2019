@@ -59,7 +59,21 @@ const sponsors =  [
     ...tierTwoSponsor
 ]
 
+const partners = [
+    {
+        name: 'WIC',
+        logo: '/partners/wic.png',
+        link: 'http://wic.ucsd.edu'
+    },
+    {
+        name: 'CSES',
+        logo: '/partners/cses.png',
+        link: 'http://cses.ucsd.edu'
+    }
+].map(x => ({...x, tier: 2}));
+
 export {
     pastSponsors,
-    sponsors
+    sponsors,
+    partners
 }

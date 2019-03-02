@@ -7,14 +7,15 @@ import {
     Container,
     SeaweedContainer,
     SectionContent,
-    SectionHeader
+    SectionHeader,
+    SeaweedStem
 } from '../styles';
 
 import {
     Sponsor as SponsorsConstants
 } from '../constants';
 
-import {pastSponsors, sponsors} from '../data/Sponsors.js'
+import {pastSponsors, sponsors, partners} from '../data/Sponsors.js'
 
 const SponsorsSection = styled(Page)`
     background: ${SponsorsConstants.gradient};
@@ -34,7 +35,7 @@ const SponsorContainer = styled.a`
 function Sponsor(props) {
     const col = props.col || 'col-md-4 col-lg-4';
     return (
-        <SponsorContainer className={`${col} my-5 d-block`} href={props.link}>
+        <SponsorContainer className={`${col} my-5 d-block`} href={props.link} target="_blank">
             <img src={props.logo} className="img-fluid d-block m-auto"/>
         </SponsorContainer>
     )
@@ -64,10 +65,10 @@ class Sponsors extends Component {
                                 {this.renderSponsors(sponsors)}
                             </div>
                             <div className="row">
-                                <SectionHeader>Past Sponsors</SectionHeader>
+                                <SectionHeader>Partners</SectionHeader>
                             </div>
                             <div className="row align-items-center justify-content-center">
-                                {this.renderSponsors(pastSponsors)}
+                                {this.renderSponsors(partners)}
                             </div>
                         </div>
                     </SectionContent>
