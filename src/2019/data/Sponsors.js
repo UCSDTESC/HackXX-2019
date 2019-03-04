@@ -1,9 +1,5 @@
 const pastSponsors = [
-    {
-        name: 'Northrop Grumman',
-        logo: '/sponsors/northrop-grumman.svg',
-        link: 'http://www.northropgrumman.com/Pages/default.aspx'
-    },
+
     {
         name: 'Amazon',
         logo: '/sponsors/amazon.png',
@@ -27,7 +23,11 @@ const pastSponsors = [
 ]
 
 const tierOneSponsor = [
-
+    {
+        name: 'Northrop Grumman',
+        logo: '/sponsors/northrop-grumman.svg',
+        link: 'http://www.northropgrumman.com/Pages/default.aspx'
+    },
 ].map(x => ({...x, tier: 0}));
 
 const tierTwoSponsor = [
@@ -35,6 +35,12 @@ const tierTwoSponsor = [
         name: 'ServiceNow',
         logo: '/sponsors/snow.png',
         link: 'https://servicenow.com'
+    },
+    {
+        name: 'American Express',
+        logo: '/sponsors/amex.jpg',
+        link: 'https://www.americanexpress.com',
+        className: 'w-75'
     },
     {
         name: 'Cisco',
@@ -46,7 +52,11 @@ const tierTwoSponsor = [
         logo: '/sponsors/surcle.png',
         link: 'https://surcle.io'
     },
-
+    {
+        name: 'Google Cloud Platform',
+        logo: '/sponsors/gcp.png',
+        link: 'https://cloud.google.com'
+    },
     {
         name: 'GitHub',
         logo: '/sponsors/git.png',
@@ -69,6 +79,11 @@ const partners = [
         name: 'CSES',
         logo: '/partners/cses.png',
         link: 'http://cses.ucsd.edu'
+    },
+    {
+        name: 'Triton XR',
+        logo: '/sponsors/xr.png',
+        link: 'https://tritonxr.ucsd.edu'
     }
 ].map(x => ({...x, tier: 2}));
 
