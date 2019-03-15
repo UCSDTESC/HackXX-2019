@@ -84,6 +84,11 @@ const partners = [
         name: 'Triton XR',
         logo: '/sponsors/xr.png',
         link: 'https://tritonxr.ucsd.edu'
+    },
+    {
+        name: 'IEEE UC San Diego',
+        logo: '/partners/ieee.png',
+        link: 'http://ieeeucsd.org'
     }
 ].map(x => ({...x, tier: 2}));
 
