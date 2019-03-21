@@ -37,7 +37,7 @@ const faq = [
     },
     {
         question: `Who can go to HackXX?`,
-        answer: 'All highschool students and undergraduate students over 18 of any and all gender identities are welcome to attend.'
+        answer: 'All highschool students and students over 18 of any and all gender identities are welcome to attend.'
     },  
     {
         question: 'How long is HackXX?',
