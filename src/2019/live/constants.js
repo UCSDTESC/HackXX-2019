@@ -12,3 +12,4 @@ export const CAL_BG = PURPLE;
 export const GRADIENT_OFFSET = (HOUR_WIDTH / 4);
 export const VERTICAL_HOUR_LINE_WIDTH = 2;
 export const ROW_HEIGHT = 70;
+export const BORDER_RADIUS = '15px';
