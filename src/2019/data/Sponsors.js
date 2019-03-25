@@ -62,6 +62,11 @@ const tierTwoSponsor = [
         logo: '/sponsors/git.png',
         link: 'https://github.com'
     },
+    {
+        name: 'iTradeNetwork',
+        logo: '/sponsors/itradenetwork.png',
+        link: 'https://itradenetwork.com',
+    }
 ].map(x => ({...x, tier: 1}));
 
 const sponsors =  [
@@ -82,13 +87,23 @@ const partners = [
     },
     {
         name: 'Triton XR',
-        logo: '/sponsors/xr.png',
+        logo: '/partners/xr.png',
         link: 'https://tritonxr.ucsd.edu'
     },
     {
         name: 'IEEE UC San Diego',
         logo: '/partners/ieee.png',
         link: 'http://ieeeucsd.org'
+    },
+    {
+        name: 'HKN',
+        logo: '/partners/hkn.png',
+        link: 'http://hkn.ucsd.edu'
+    },
+    {
+        name: 'Div-E',
+        logo: '/partners/div-e.png',
+        link: 'http://www.div-e.io/'
     }
 ].map(x => ({...x, tier: 2}));
 
