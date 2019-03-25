@@ -8,7 +8,6 @@ import AnnouncementBubble from './AnnouncementBubble';
 import {
     BORDER_RADIUS
 } from '../constants';
-import { format } from 'util';
 
 const Container = styled.div`
     width: 100%;
@@ -21,7 +20,7 @@ const Container = styled.div`
 
 // change background color to use constant
 const AnnouncementTitle = styled.div`
-    background: #4F4F4F;
+    background: #8E44AD;
     color: white;
     padding-top: 1.8rem;
     padding-bottom: 1.8rem;
@@ -36,7 +35,7 @@ const AnnouncementIcon = styled(AnnouncementVectorGraphic)`
 
 const AnnouncementContainer = styled.div`
     padding-top: 1rem;
-    background: #C4C4C4;
+    background: #CEFFE8;
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
     overflow-y: scroll;

@@ -11,7 +11,7 @@ const Bubble = styled.div`
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
     padding: 15px;
-    background: #E0E0E0;
+    background: #FFFFFF;
 `
 
 class AnnouncementBubble extends Component {
