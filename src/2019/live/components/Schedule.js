@@ -19,17 +19,35 @@ import {
     CAL_BG,
     GRADIENT_OFFSET,
     VERTICAL_HOUR_LINE_WIDTH,
-    ROW_HEIGHT
+    ROW_HEIGHT,
+    LIGHT_BLUE as LIVE_BLUE
 } from '../constants';
 
-const Search = styled.input`
+const Search = styled.div`
     width: 100%;
     border: 0;
     border-top-left-radius: ${BORDER_RADIUS};
     border-top-right-radius: ${BORDER_RADIUS};
     outline: none;
-    padding: 1rem ${BORDER_RADIUS};
+    font-size: 1.5rem;
+    padding: 1.8rem 0;
+    background: ${LIVE_BLUE};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
 
+const SearchContents = styled.div`
+    width: 75%;
+    color: white;
+    font-weight: 800;
+`
+
+const SearchBox = styled.input`
+    border-radius: ${BORDER_RADIUS};
+    border: 0;
+    width: 50%;
+    outline: 0;
+    padding: 0 0.5rem;
+    font-size: 1.3rem;
 `
 
 const Container = styled.div`
@@ -42,8 +60,8 @@ const Container = styled.div`
 `
 
 const Legend  = styled.div`
-    background: black;
-    color: white;
+    background: ${CAL_BG};
+    color: black;
     padding: 0.3rem ${BORDER_RADIUS}
 
     span + span {
@@ -73,7 +91,7 @@ const Draggable = styled.div`
 const Calendar = styled.div`
     height: 100%;
     width: ${NUM_COLS * HOUR_WIDTH}px;
-    color: white;
+    color: black;
     display: block;
     margin-top: 1rem;
     position: relative;
@@ -88,7 +106,8 @@ const Calendar = styled.div`
 `
 
 const Times = styled.div`
-    color: white;
+    color: black;
+    opacity: 0.5;
     font-size: 20px;
     width: 100%;
     
@@ -100,7 +119,8 @@ const Times = styled.div`
 `
 
 const Row = styled.div`
-    height: ${ROW_HEIGHT}px
+    height: ${ROW_HEIGHT * 2}px;
+    margin-bottom: 2rem;
 `;
 
 const Day = styled.div`
@@ -140,6 +160,7 @@ class Schedule extends Component {
                 ...r, 
                 duration: moment(r.endTime).diff(moment(r.startTime), 'hours', true)
             })))
+            .then(records => records.sort((a, b) => new Date(a.startTime) - new Date(b.startTime)))
             //using this.setState's callback function to trigger the derived data build when we have records
             .then(records => this.setState({records}, this.createScheduleRows))
     }
@@ -189,15 +210,25 @@ class Schedule extends Component {
     //   then this function can be `return row.isFree(record[startTime]) && row.isFree(record[endTime])`
     //   you can write a class for this data structure
     //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
-    fits(row, record) {
+    fits(row, record, rowNum) {
+        //console.log(JSON.parse(JSON.stringify(row)))
         for (let i = 0; i < row.length; i++) {
             let currEvt = row[i];
-
-            //there's a conflict in this row, does not fit
-            if (currEvt['endTime'] >= record['endTime'] || currEvt['startTime'] >= record['startTime']) {
+            
+            console.log(
+                currEvt['endTime'] >= record['endTime'],
+                currEvt['startTime'] >= record['startTime'],
+                currEvt['startTime'] >= record['endTime'],
+                currEvt['endTime'] >= record['startTime']
+            )
+            if (currEvt['endTime'] >= record['endTime'] || 
+                currEvt['startTime'] >= record['startTime'] || 
+                currEvt['startTime'] >= record['endTime'] ||
+                currEvt['endTime'] >= record['startTime']) {
                 return false;
             }
         }
+        console.log("fits!", record.title, rowNum)
         return true;
     }
 
@@ -206,12 +237,12 @@ class Schedule extends Component {
 
         //for every record...
         for (let i = 0;  i < records.length; i++) {
-
+            //console.log(JSON.parse(JSON.stringify(rows)));
             //go through all rows...
             for (let rowNum = 0; rowNum < rows.length; rowNum++) {
-
+                console.log('we are in row', rowNum, JSON.parse(JSON.stringify(rows[rowNum])), 'for', records[i].title)
                 //if the record fits in the current row
-                if (this.fits(rows[rowNum], records[i])) {
+                if (this.fits(rows[rowNum], records[i], rowNum)) {
 
                     //add it to the row
                     rows[rowNum].push(records[i]);
@@ -220,11 +251,11 @@ class Schedule extends Component {
                     break;
                 }
                 else {
-
                     //we haven't found a row for this record and are at the 
                     //end of all of our current rows, so we create a new row
                     if (rowNum === rows.length - 1) {
-                        
+                        console.log('creating new row for....', records[i].title)
+
                         //add a row with the record as it's only event
                         rows.push([records[i]]);
 
@@ -261,7 +292,12 @@ class Schedule extends Component {
         }
         return (
             <Container className="m-5 w-auto">
-                <Search placeholder="Search Here..."/>
+                <Search className="d-flex justify-content-center"> 
+                    <SearchContents className="d-flex">
+                        Timeline
+                        <SearchBox className="ml-auto"/>
+                    </SearchContents>
+                </Search>
                 <Legend>
                     {this.eventCategories.map(e => <span>{e}</span>)}
                 </Legend>

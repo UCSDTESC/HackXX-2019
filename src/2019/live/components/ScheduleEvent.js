@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 import {
     HOUR_WIDTH,
@@ -7,6 +8,8 @@ import {
     VERTICAL_HOUR_LINE_WIDTH,
     CAL_BG
 } from '../constants';
+import { PURPLE } from '../../constants';
+import { EventEmitter } from 'events';
 
 const LineContainer = styled.div`
     width: ${props => props.duration ? 
@@ -21,22 +24,25 @@ const LineContainer = styled.div`
     color: black;
     font-weight: bolder;
     font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+
 `
 
 const Line = styled.div`
-    background: red;
+    background: ${PURPLE};
     height: 4px;
     width: 100%;
     margin-top: 0.5rem;
+    box-shadow: 0px 0px 5px #5CCBE2;
     &::before {
         content: '';
         display: inline-block;
         width: 10px;
         height: 10px;
-        background: red;
+        background: ${PURPLE};
         position: absolute;
         left: -5px;
-        bottom: -3px;
+        top: 5px;
         border-radius: 50%;
     }
 
@@ -45,12 +51,31 @@ const Line = styled.div`
         display: inline-block;
         width: 10px;
         height: 10px;
-        background: red;
+        background: ${PURPLE};
         position: absolute;
         right: -5px;
-        bottom: -3px;
+        top: 5px;
         border-radius: 50%; 
     }
+`
+
+const Title = styled.div`
+    text-decoration: underline;
+    font-size: 1.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow:hidden;
+    font-weight: bold;
+`
+
+const Time = styled.div`
+    color: ${PURPLE};
+    font-weight: bold;
+`
+
+const Location = styled.div`
+    color: ${PURPLE};
 `
 
 class ScheduleEvent extends Component {
@@ -63,8 +88,16 @@ class ScheduleEvent extends Component {
                 startsAt={startsAt}
                 duration={duration}
             >
-                {event.title}
                 <Line />
+                <Title>
+                    {event.title}
+                </Title>
+                <Time>
+                    {moment(event.startTime).format('h:mma')} - {moment(event.endTime).format('h:mma')}
+                </Time>
+                <Location>
+                    {event.location}
+                </Location>
             </LineContainer>
         )
     }
