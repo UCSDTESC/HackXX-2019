@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Schedule from './components/Schedule';
 import Nav from './components/Nav';
 import Links from './components/Links';
+import Announcements from './components/Announcements';
 
 import {
     Page,
@@ -34,7 +35,7 @@ class Live extends Component {
                             <Schedule />
                         </div>
                         <div className="col-md-4">
-                            component to pull announcements from airtable and render them here - no designs yet so do whatever for now
+                            <Announcements />
                         </div>
                     </div>
                 </div>
