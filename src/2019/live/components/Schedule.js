@@ -168,13 +168,13 @@ class Schedule extends Component {
 
     renderTimes(day) {
         const timeMap = {
-            'Fri': FRI_HOURS,
-            'Sat': SAT_HOURS
+            'Sat': FRI_HOURS,
+            'Sun': SAT_HOURS
         }
 
         const startTime = {
-            'Fri': 10,
-            'Sat': 0
+            'Sat': 10,
+            'Sun': 0
         }[day]
 
         let times = []
@@ -304,8 +304,8 @@ class Schedule extends Component {
                 <Main>
                 <Draggable>
                     <Times>
-                        {this.renderTimes('Fri')}
                         {this.renderTimes('Sat')}
+                        {this.renderTimes('Sun')}
                     </Times>
                     <Calendar>
                         {this.renderRows()}
