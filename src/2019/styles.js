@@ -60,6 +60,16 @@ export const SectionContent = styled.div`
     `)}
 `
 
+export const SectionSubHeader = styled.div`
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+
+    ${mediaBreakpointDown('md', `
+        font-size: 1.5rem;
+    `)}
+`
+
 export const HideBelow = (breakpoint) => styled.div`
     ${mediaBreakpointDown(breakpoint, `
         display: none !important;
