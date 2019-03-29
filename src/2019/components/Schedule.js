@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Airtable from 'airtable';
 import styled from 'styled-components';
 
 import {ReactComponent as ScheduleSymbol} from '../svg/symbols/schedule.svg';
@@ -14,11 +15,20 @@ import {
     SeaweedContainer,
     SeaweedStem,
     SectionContent,
-    SectionHeader
+    SectionHeader,
+    SectionSubHeader
 } from '../styles';
 
 const ScheduleSection = styled(Page)`
     background: ${ScheduleConstants.gradient};
+`
+
+const ScheduleTimes = styled.div`
+    padding-right: 3rem;
+`
+
+const EventContainer = styled.div`
+    padding-bottom: 1rem;
 `
 
 const SchoolOfFish = styled(School)`
@@ -27,10 +37,163 @@ const SchoolOfFish = styled(School)`
 `
 
 const PaddedRow = styled.div`
-    margin: 7rem 0;
+    margin: 3rem 0;
+`
+
+const PaddedDay = styled.div`
+    margin: 1rem 0;
 `
 
 class Schedule extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            records: []
+        }
+
+        this.base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_KEY })
+            .base('appY4r7VAncjUupmp')
+    }
+
+
+    componentDidMount() {
+        this.base('Static Schedule')
+            .select({
+                // Selecting records in Grid view:
+                view: "Grid view"
+            })
+            .eachPage((records, fetchNextPage) => {
+                // This function (`page`) will get called for each page of records.
+
+                this.setState({
+                    records: [
+                        ...this.state.records,
+                        ...records
+                    ]
+                })
+
+                // To fetch the next page of records, call `fetchNextPage`.
+                fetchNextPage();
+
+            }, err => {
+                if (err) { console.error(err); return; }
+            });
+    }
+
+    isSaturday(timestamp) {
+        // ex. timestamp: 2019-03-13T02:39:57.000Z
+        const splitTimestamp = timestamp.split('T');
+        let day = parseInt(splitTimestamp[0].split('-')[2]);
+        const hour = parseInt(splitTimestamp[1].split(':')[0], 10) - 7;
+
+        if(hour < 0) {
+            day -= 1;
+        }
+
+        return day === 6;
+    }
+
+    formatTimestamp(timestamp) {
+        // 2019-03-13T02:39:57.000Z
+        let formatted = '';
+        
+        // splits the timestamp into date and time
+        const splitTimestamp = timestamp.split('T');
+        const splitTime = splitTimestamp[1].split(':');
+
+        let hour = parseInt(splitTime[0], 10);
+        hour -= 7;
+        
+        // check to see if we need to subtract a day
+        // doesn't account for beginning of the month -- need to fix
+        if(hour < 0) {
+            hour += 24;
+        }
+        
+        let timeOfDay = 'AM';
+        if(hour >= 12) {
+            hour -= 12;
+            timeOfDay = 'PM';
+        }
+        
+        if(hour == 0) {
+            hour = 12;
+        }
+
+        splitTime[0] = hour.toString();
+
+        formatted = `${splitTime[0]}:${splitTime[1]} ${timeOfDay}`
+
+        return formatted;
+    }
+    
+    renderStaticSchedule(day) {
+        // day = 0; saturday
+        // day = 1; sunday
+
+        // push all announcements into this list
+        let eventSchedule = []
+        let formattedStartTime = ''
+        let formattedEndTime = ''
+
+        this.state.records.forEach(record => {
+            const startTime = record.get('startTime');
+            const title = record.get('title');
+
+            if(day === 0) {
+                // make sure startTime is saturday
+                if(!this.isSaturday(startTime)) {
+                    return;
+                }
+            } else {
+                // make sure startTime is not saturday
+                if(this.isSaturday(startTime)) {
+                    return;
+                }
+            }
+
+            formattedStartTime = this.formatTimestamp(startTime);
+            formattedEndTime = record.get('endTime');
+            
+            if(formattedEndTime) {
+                formattedEndTime = this.formatTimestamp(formattedEndTime);
+                
+                // assemble the required fields and push into the list
+                eventSchedule.push(
+                    <EventContainer className="w-100 d-flex d-inline-block">
+                        <ScheduleTimes className="w-50 text-right">
+                            <div>{formattedStartTime}</div>
+                            <div>to {formattedEndTime}</div>
+                        </ScheduleTimes>
+                        <div className="w-50 text-left">
+                            <div>{title}</div>
+                        </div>
+                    </EventContainer>
+                )
+            } else {
+                eventSchedule.push(
+                    <EventContainer className="w-100 d-flex d-inline-block">
+                        <ScheduleTimes className="w-50 text-right">
+                            <div>{formattedStartTime}</div>
+                        </ScheduleTimes>
+                        <div className="w-50 text-left">
+                            <div>{title}</div>
+                        </div>
+                    </EventContainer>
+                )
+            }
+
+        });
+
+        return (
+            <PaddedDay>
+                {eventSchedule}
+            </PaddedDay>
+        )
+
+    }
+
     render() {
         return (
             <ScheduleSection id="schedule">
@@ -46,7 +209,14 @@ class Schedule extends Component {
                                 <SectionHeader>Schedule</SectionHeader>
                             </div>
                             <PaddedRow className="row justify-content-center">
-                                <h3>Coming Soon, Stay Tuned For More!</h3>
+                                <div className="col col-md-6">
+                                    <SectionSubHeader className="text-center">Saturday, April 6th</SectionSubHeader>
+                                    {this.renderStaticSchedule(0)}
+                                </div>
+                                <div className="col col-md-6">
+                                    <SectionSubHeader className="text-center">Sunday, April 7th</SectionSubHeader>
+                                    {this.renderStaticSchedule(1)}
+                                </div>
                             </PaddedRow>
                             <SchoolOfFish className="ml-auto d-block"/>
                         </div>
