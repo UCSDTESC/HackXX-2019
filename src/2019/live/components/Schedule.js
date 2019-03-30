@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import ScheduleEvent from './ScheduleEvent';
+import SchedulePopup from './SchedulePopup';
 
 import {
     BORDER_RADIUS, LIGHT_BLUE
@@ -20,6 +21,7 @@ import {
     GRADIENT_OFFSET,
     VERTICAL_HOUR_LINE_WIDTH,
     ROW_HEIGHT,
+    ROW_MARGIN_TOP,
     LIGHT_BLUE as LIVE_BLUE
 } from '../constants';
 
@@ -52,7 +54,6 @@ const SearchBox = styled.input`
 
 const Container = styled.div`
     width: 100%;
-    background: red;
     border-top-left-radius: ${BORDER_RADIUS};
     border-top-right-radius: ${BORDER_RADIUS};
     border-bottom-left-radius: ${BORDER_RADIUS};
@@ -62,15 +63,13 @@ const Container = styled.div`
 const Legend  = styled.div`
     background: ${CAL_BG};
     color: black;
-    padding: 0.3rem ${BORDER_RADIUS}
-
+    padding: 1rem 2rem;
     span + span {
         margin-left: 1rem;
     }
 `
 
 const Main = styled.div`
-    //height: 30rem;
     background: ${CAL_BG};
     position: relative;
     overflow-x: auto;
@@ -119,9 +118,27 @@ const Times = styled.div`
 `
 
 const Row = styled.div`
-    height: ${ROW_HEIGHT * 2}px;
-    margin-bottom: 2rem;
+    height: ${ROW_HEIGHT}px;
+    
+    & + & {
+        margin-top: ${ROW_MARGIN_TOP}px;
+    }
 `;
+
+const LegendPill = styled.span`
+    background: ${props => props.background || 'white'};
+    border-radius: 5pc;
+    padding: 0.5rem;
+    margin: 0 0.1rem;
+    color: ${props => props.color};
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    box-shadow:  1px solid rgba(0, 0, 0, 0.1);
+    opacity: ${props => props.isActive ? '1' : '0.5'};
+
+    &:hover {
+        cursor: pointer;
+    }
+`
 
 const Day = styled.div`
 `
@@ -137,14 +154,42 @@ class Schedule extends Component {
             records: [],
 
             //holds the derived state from the airtable response
-            rows: [[]]
+            rows: [[]],
+
+            activeTab: 0,
+
+            popup: {
+                event: {},
+                isOpen: false
+            }
         }
 
         //reference to the Airtable API client
         this.base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_KEY })
                         .base('appY4r7VAncjUupmp')
 
-        this.eventCategories = ['Main Events', 'Food', 'Workshops', 'Talks']
+        this.eventCategories = {
+            'All Events': {
+                color: 'black',
+                
+            }, 
+            'Main Events': {
+                color: 'white',
+                background: '#8E44AD'
+            }, 
+            'Food': {
+                color: 'black',
+                background: '#AEF9D6'
+            }, 
+            'Talks': {
+                color: 'black',
+                background: '#EF767A'
+            }, 
+            'Workshops': {
+                color: 'black',
+                background:'#43D2F0'
+            }
+        }
 
         this.startTime = moment("2019-04-06T17:00:00.000Z");
 
@@ -211,16 +256,9 @@ class Schedule extends Component {
     //   you can write a class for this data structure
     //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
     fits(row, record, rowNum) {
-        //console.log(JSON.parse(JSON.stringify(row)))
         for (let i = 0; i < row.length; i++) {
             let currEvt = row[i];
-            
-            console.log(
-                currEvt['endTime'] >= record['endTime'],
-                currEvt['startTime'] >= record['startTime'],
-                currEvt['startTime'] >= record['endTime'],
-                currEvt['endTime'] >= record['startTime']
-            )
+
             if (currEvt['endTime'] >= record['endTime'] || 
                 currEvt['startTime'] >= record['startTime'] || 
                 currEvt['startTime'] >= record['endTime'] ||
@@ -228,7 +266,7 @@ class Schedule extends Component {
                 return false;
             }
         }
-        console.log("fits!", record.title, rowNum)
+
         return true;
     }
 
@@ -240,7 +278,6 @@ class Schedule extends Component {
             //console.log(JSON.parse(JSON.stringify(rows)));
             //go through all rows...
             for (let rowNum = 0; rowNum < rows.length; rowNum++) {
-                console.log('we are in row', rowNum, JSON.parse(JSON.stringify(rows[rowNum])), 'for', records[i].title)
                 //if the record fits in the current row
                 if (this.fits(rows[rowNum], records[i], rowNum)) {
 
@@ -254,7 +291,6 @@ class Schedule extends Component {
                     //we haven't found a row for this record and are at the 
                     //end of all of our current rows, so we create a new row
                     if (rowNum === rows.length - 1) {
-                        console.log('creating new row for....', records[i].title)
 
                         //add a row with the record as it's only event
                         rows.push([records[i]]);
@@ -270,18 +306,51 @@ class Schedule extends Component {
         this.setState({rows})
     }
     
+    renderLegend = () => {
+        return Object.keys(this.eventCategories).map((e, i) => (
+            <LegendPill 
+                color={this.eventCategories[e].color}
+                background={this.eventCategories[e].background}
+                isActive={i === this.state.activeTab}
+            >
+                {e}
+            </LegendPill>
+        ))
+    }
+
+    showPopup = (event) => {
+        this.setState({
+            popup: {event, isOpen: true}
+        })
+    }
+
     renderRows = () => {
         const {records, rows} = this.state;
 
         return rows.map((row, rowIdx) => {
             return (
-                <Row className="mb-3">
+                <Row >
                     {row.map(r => <ScheduleEvent
                             startsAt={this.hoursSinceStartTime(r['startTime'])}
                             event={r}
+                            showPopup={this.showPopup}
+                            rowIdx={rowIdx}
+                            color={this.eventCategories[r.type].background}
                         />)}
                 </Row>
             )
+        })
+    }
+
+    hidePopup = () => {
+
+        if (!this.state.popup.isOpen) return;
+
+        this.setState({
+            popup: {
+                isOpen: false,
+                event: null
+            }
         })
     }
 
@@ -291,7 +360,7 @@ class Schedule extends Component {
             return <div>Loading....</div>
         }
         return (
-            <Container className="m-5 w-auto">
+            <Container className="my-5 ml-5 w-auto" onClick={this.hidePopup}>
                 <Search className="d-flex justify-content-center"> 
                     <SearchContents className="d-flex">
                         Timeline
@@ -299,7 +368,7 @@ class Schedule extends Component {
                     </SearchContents>
                 </Search>
                 <Legend>
-                    {this.eventCategories.map(e => <span>{e}</span>)}
+                    {this.renderLegend()}
                 </Legend>
                 <Main>
                 <Draggable>
@@ -308,6 +377,7 @@ class Schedule extends Component {
                         {this.renderTimes('Sun')}
                     </Times>
                     <Calendar>
+                        <SchedulePopup {...this.state.popup}/>
                         {this.renderRows()}
                     </Calendar>
                 </Draggable>

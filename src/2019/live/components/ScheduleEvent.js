@@ -6,10 +6,12 @@ import {
     HOUR_WIDTH,
     GRADIENT_OFFSET,
     VERTICAL_HOUR_LINE_WIDTH,
-    CAL_BG
+    CAL_BG,
+    ROW_HEIGHT,
+    ROW_MARGIN_TOP,
+    LIGHT_BLUE
 } from '../constants';
 import { PURPLE } from '../../constants';
-import { EventEmitter } from 'events';
 
 const LineContainer = styled.div`
     width: ${props => props.duration ? 
@@ -29,7 +31,7 @@ const LineContainer = styled.div`
 `
 
 const Line = styled.div`
-    background: ${PURPLE};
+    background: ${props => props.color};
     height: 4px;
     width: 100%;
     margin-top: 0.5rem;
@@ -39,11 +41,12 @@ const Line = styled.div`
         display: inline-block;
         width: 10px;
         height: 10px;
-        background: ${PURPLE};
+        background: ${props => props.color};
         position: absolute;
         left: -5px;
         top: 5px;
         border-radius: 50%;
+        box-shadow: 0px 0px 5px #5CCBE2;
     }
 
     &::after {
@@ -51,22 +54,28 @@ const Line = styled.div`
         display: inline-block;
         width: 10px;
         height: 10px;
-        background: ${PURPLE};
+        background: ${props => props.color};
         position: absolute;
         right: -5px;
         top: 5px;
         border-radius: 50%; 
+        box-shadow: 0px 0px 5px #5CCBE2;    
     }
 `
 
 const Title = styled.div`
     text-decoration: underline;
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
     overflow:hidden;
     font-weight: bold;
+
+    &:hover {
+        cursor: pointer;
+        color: ${LIGHT_BLUE}
+    }
 `
 
 const Time = styled.div`
@@ -81,15 +90,19 @@ const Location = styled.div`
 class ScheduleEvent extends Component {
 
     render() {
-        const {startsAt, event} = this.props;
+        const {startsAt, event, showPopup, rowIdx, color} = this.props;
         const duration = event.duration;
         return (
             <LineContainer
                 startsAt={startsAt}
                 duration={duration}
             >
-                <Line />
-                <Title>
+                <Line color={color} />
+                <Title onClick={() => showPopup({
+                    ...event,
+                    x: (startsAt * HOUR_WIDTH) + GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH,
+                    y: rowIdx * (ROW_HEIGHT + ROW_MARGIN_TOP),
+                })}>
                     {event.title}
                 </Title>
                 <Time>
