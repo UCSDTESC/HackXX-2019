@@ -3,6 +3,7 @@ import Airtable from 'airtable';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import TextSchedule from '../../components/Schedule';
 import ScheduleEvent from './ScheduleEvent';
 import SchedulePopup from './SchedulePopup';
 import Scroll from './ScheduleScroll';
@@ -91,15 +92,6 @@ const Main = styled.div`
     overflow-x: auto;
     border: 0;
 
-    ::-webkit-scrollbar {
-        width: 0px;  /* remove scrollbar space */
-        background: transparent;  /* optional: just make scrollbar invisible */
-    }
-    /* optional: show position indicator in red */
-    ::-webkit-scrollbar-thumb {
-        background: transparent;
-    }
-
 `
 
 const Draggable = styled.div`
@@ -156,10 +148,10 @@ const LegendPill = styled.span`
     color: ${props => props.color};
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     box-shadow:  1px solid rgba(0, 0, 0, 0.1);
-    opacity: ${props => props.isActive ? '1' : '0.5'};
+    opacity: ${props => props.isActive ? '1' : '1'};
 
     &:hover {
-        cursor: pointer;
+        //cursor: pointer;
     }
 `
 
@@ -232,10 +224,6 @@ class Schedule extends Component {
             .then(records => records.sort((a, b) => new Date(a.startTime) - new Date(b.startTime)))
             //using this.setState's callback function to trigger the derived data build when we have records
             .then(records => this.setState({records}, this.createScheduleRows))
-         
-        this.scrollRef.current.addEventListener('scroll', () => {
-            this.scrollerRef.current.style.left = ((this.scrollRef.current.scrollLeft / (CAL_WIDTH + 2*CALENDAR_MARGIN)) *100) + '%'; 
-        })
     }
 
 
@@ -434,8 +422,8 @@ class Schedule extends Component {
                     </Main>
                     <Scroll scrollerRef={this.scrollerRef}/>
                 </HideOnMobile>
-                <HideAboveMobile as={Container} className="m-5">
-                    Mobile Version Of Schedule
+                <HideAboveMobile as={Container}>
+                    <TextSchedule data={this.state.records}/>
                 </HideAboveMobile>
             </>
         )

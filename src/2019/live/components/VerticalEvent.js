@@ -34,6 +34,7 @@ const VerticalText = styled.div`
     transform-origin: center;
     transform: translateX(-50%) rotate(90deg) translateY(-1rem) translateX(10rem);
     left: 0;
+    font-family: Roboto, sans-serif;
 `
 
 class VerticalEvent extends Component {

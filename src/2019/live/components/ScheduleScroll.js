@@ -34,7 +34,7 @@ const ScrollContainer = styled.div`
 const ScrollBar = styled.div`
     height: 1.5rem;
     width: 95%;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 0px solid rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     position: relative;
 
@@ -63,9 +63,6 @@ class Scroll extends Component {
         return (
             <ScrollContainer>
                 <ScrollBar className="text-center">
-                    <Scroller ref={scrollerRef}>
-                        | | |
-                    </Scroller>
                     <span>
                         🚂 Choo Choo! You have the power to time travel ⏰
                     </span>
