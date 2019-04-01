@@ -5,18 +5,30 @@ import {
     PURPLE
 } from '../../constants'
 
+import {
+    CALENDAR_MARGIN
+} from '../constants'
+
 import {withRouter} from 'react-router-dom';
 import { mediaBreakpointDown } from '../../../breakpoints';
 
 const NavContainer = styled.nav`
     width: 100%;
+    padding-left: 70px;
+    padding-right: 55px;
+
+    ${mediaBreakpointDown('md', `
+        padding: 15px;
+    `)}
 `
 
 // HackXX Logo
 const NavLogo = styled.img`
-    width: 3rem;
+    //margin-left: 45px;
+    width: 2.7rem;
     ${mediaBreakpointDown('md', `
-        width: 2rem;
+        width: 1.7rem;
+        margin-left: 45px;
     `)}
 `
 
@@ -25,7 +37,7 @@ const NavText = styled.span`
     font-family: Quicksand;
     font-style: normal;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     line-height: normal;
     text-align: left;
     margin-left: 1rem;
@@ -48,9 +60,11 @@ const NavTextBox = styled.span`
     font-family: Quicksand;
     font-style: normal;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     line-height: normal;
     text-align: left;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     margin-left: 1rem;
@@ -78,6 +92,7 @@ const NavTitle = styled.span`
 const NavIcon = styled.img`
     display: block;
     margin: auto;
+    width: 2rem;
 `
 
 class HackXXLiveNav extends Component {

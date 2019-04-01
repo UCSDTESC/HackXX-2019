@@ -7,15 +7,19 @@ import {mediaBreakpointDown} from '../../../breakpoints';
 const LinkRect = styled.span`
     display: inline-block;
     vertical-align: middle;
-    line-height: 120px;
-    
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 1rem;
  
     background: #FFFFFF;
     box-shadow: 0px 0px 10px 
         rgba(0, 0, 0, 0.25);
     border-radius: 50px;
+
+    ${mediaBreakpointDown('lg-xl', `
+        display: block;
+        padding: none;
+        margin-left: 40px;
+        margin-right: 40px;
+    `)}
 `
 
 const LinkText = styled.a`
@@ -26,32 +30,41 @@ const LinkText = styled.a`
     line-height: normal;
     color: #000000;
     font-decoration: none;
+    border: none;
+    padding-right: 1rem;
     
-    ${mediaBreakpointDown('md', `
-        padding-right: 1rem;
+    ${mediaBreakpointDown('lg-xl', `
+        padding: none;
+        margin: none;
+        font-size: 20px;
     `)}
 `
 
 const LinkIcon = styled.img`
     padding-right: 1rem;
+    width: 60px;
+
+    ${mediaBreakpointDown('lg-xl', `
+        margin: none;
+        padding: none;
+    `)}
 `
 
 const Divider = styled.img`
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
 
-    ${mediaBreakpointDown('md', `
-        display: none;
+    ${mediaBreakpointDown('lg-xl', `
+        content: url('/horizontal-divider.svg');
         margin: none;
         padding: none;
-        visibility: hidden;
     `)}
 `
 
 const LinkGroup = styled.span`
     white-space: nowrap;
-    ${mediaBreakpointDown('md', `
+    ${mediaBreakpointDown('lg-xl', `
         display: block;
+        padding-top, padding-bottom: 0;
+        margin-top, margin-bottom: 0;
     `)}
 `
 
@@ -60,13 +73,13 @@ class Links extends Component {
     render() {
         return (
             <LinkRect>
-                <LinkGroup><LinkText href="https://hackxx-2019.slack.com" target="_blank"><LinkIcon src="/slack.svg"/>Slack</LinkText></LinkGroup>
+                <LinkGroup><LinkText className="btn btn-outline-light" href="https://hackxx-2019.slack.com" target="_blank"><LinkIcon src="/slack.svg"/>Slack</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
-                <LinkGroup><LinkText href="https://www.devpost.com" target="_blank"><LinkIcon src="/devpost.svg"/>Devpost</LinkText></LinkGroup>
+                <LinkGroup><LinkText className="btn btn-outline-light" href="https://www.devpost.com" target="_blank"><LinkIcon src="/devpost.svg"/>Devpost</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
-                <LinkGroup><LinkText href="https://www.google.com" target="_blank"><LinkIcon src="/tracks.svg"/>Tracks</LinkText></LinkGroup>
+                <LinkGroup><LinkText className="btn btn-outline-light" href="https://www.google.com" target="_blank"><LinkIcon src="/tracks.svg"/>Tracks</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
-                <LinkGroup><LinkText href="https://www.google.com" target="_blank"><LinkIcon src="/faq.svg"/>FAQ</LinkText></LinkGroup>
+                <LinkGroup><LinkText className="btn btn-outline-light" href="https://www.google.com" target="_blank"><LinkIcon src="/faq.svg"/>FAQ</LinkText></LinkGroup>
             </LinkRect>
         )
     }
