@@ -15,7 +15,6 @@ const Container = styled.div`
     border-top-right-radius: ${BORDER_RADIUS};
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
-    height: 53rem;
 `
 
 // change background color to use constant

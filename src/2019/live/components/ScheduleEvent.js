@@ -16,8 +16,9 @@ import { PURPLE } from '../../constants';
 const LineContainer = styled.div`
     width: ${props => props.duration ? 
         `${props.duration * HOUR_WIDTH}px` : 
-        `0px`
+        `2px`
     };
+
     position: absolute;
     left: ${props => props.startsAt ? 
         `${(props.startsAt * HOUR_WIDTH) + GRADIENT_OFFSET + VERTICAL_HOUR_LINE_WIDTH}px` :
@@ -87,11 +88,18 @@ const Location = styled.div`
     color: ${PURPLE};
 `
 
+
 class ScheduleEvent extends Component {
 
     render() {
         const {startsAt, event, showPopup, rowIdx, color} = this.props;
         const duration = event.duration;
+
+
+        if (event.verticalStyle) {
+            return <></>
+        }
+
         return (
             <LineContainer
                 startsAt={startsAt}

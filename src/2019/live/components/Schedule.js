@@ -6,6 +6,7 @@ import moment from 'moment';
 import ScheduleEvent from './ScheduleEvent';
 import SchedulePopup from './SchedulePopup';
 import Scroll from './ScheduleScroll';
+import VerticalEvent from './VerticalEvent';
 
 import {
     BORDER_RADIUS, LIGHT_BLUE
@@ -357,6 +358,15 @@ class Schedule extends Component {
         })
     }
 
+    renderVerticalEvents = () => {
+        return this.state.records
+            .filter(x => x.verticalStyle)
+            .map(r => <VerticalEvent 
+                startsAt={this.hoursSinceStartTime(r['startTime'])}
+                event={r}
+            />)
+    }
+
     renderRows = () => {
         const {records, rows} = this.state;
 
@@ -418,6 +428,7 @@ class Schedule extends Component {
                             <Calendar>
                                 <SchedulePopup {...this.state.popup}/>
                                 {this.renderRows()}
+                                {this.renderVerticalEvents()}
                             </Calendar>
                         </Draggable>
                     </Main>
