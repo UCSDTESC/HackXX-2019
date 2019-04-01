@@ -15,10 +15,10 @@ class Live extends Component {
         return (
             <div className="container-fluid bg-primary">
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                         <Schedule />
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                         <Announcements />
                     </div>
                 </div>

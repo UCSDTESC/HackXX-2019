@@ -25,7 +25,7 @@ const LineContainer = styled.div`
     };
     color: black;
     font-weight: bolder;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: 'Roboto', sans-serif;
 
 `
@@ -65,7 +65,7 @@ const Line = styled.div`
 
 const Title = styled.div`
     text-decoration: underline;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;

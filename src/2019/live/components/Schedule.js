@@ -5,10 +5,15 @@ import moment from 'moment';
 
 import ScheduleEvent from './ScheduleEvent';
 import SchedulePopup from './SchedulePopup';
+import Scroll from './ScheduleScroll';
 
 import {
     BORDER_RADIUS, LIGHT_BLUE
 } from '../../constants';
+
+import {
+    HideBelow,
+} from '../../styles';
 
 import {
     FRI_HOURS,
@@ -24,6 +29,16 @@ import {
     ROW_MARGIN_TOP,
     LIGHT_BLUE as LIVE_BLUE
 } from '../constants';
+
+import { mediaBreakpointUp } from '../../../breakpoints';
+
+const HideOnMobile = HideBelow('sm');
+
+const HideAboveMobile = styled.div`
+    ${mediaBreakpointUp('sm', `
+        display: none !important;
+    `)}
+`
 
 const Search = styled.div`
     width: 100%;
@@ -64,7 +79,7 @@ const Legend  = styled.div`
     background: ${CAL_BG};
     color: black;
     padding: 1rem 2rem;
-    span + span {
+    span {
         margin-left: 1rem;
     }
 `
@@ -74,8 +89,15 @@ const Main = styled.div`
     position: relative;
     overflow-x: auto;
     border: 0;
-    border-bottom-left-radius: ${BORDER_RADIUS};
-    border-bottom-right-radius: ${BORDER_RADIUS};
+
+    ::-webkit-scrollbar {
+        width: 0px;  /* remove scrollbar space */
+        background: transparent;  /* optional: just make scrollbar invisible */
+    }
+    /* optional: show position indicator in red */
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
 
 `
 
@@ -147,7 +169,8 @@ class Schedule extends Component {
 
     constructor() {
         super();
-
+        this.scrollRef = React.createRef();
+        this.scrollerRef = React.createRef();
         this.state = {
 
             // holds the raw data extracted from airtable
@@ -208,6 +231,10 @@ class Schedule extends Component {
             .then(records => records.sort((a, b) => new Date(a.startTime) - new Date(b.startTime)))
             //using this.setState's callback function to trigger the derived data build when we have records
             .then(records => this.setState({records}, this.createScheduleRows))
+         
+        this.scrollRef.current.addEventListener('scroll', () => {
+            this.scrollerRef.current.style.left = ((this.scrollRef.current.scrollLeft / (CAL_WIDTH + 2*CALENDAR_MARGIN)) *100) + '%'; 
+        })
     }
 
 
@@ -275,8 +302,11 @@ class Schedule extends Component {
 
         //for every record...
         for (let i = 0;  i < records.length; i++) {
-            //console.log(JSON.parse(JSON.stringify(rows)));
-            //go through all rows...
+
+            if (!records[i].title || !records[i].startTime || !records[i].endTime) {
+                continue;
+            }
+
             for (let rowNum = 0; rowNum < rows.length; rowNum++) {
                 //if the record fits in the current row
                 if (this.fits(rows[rowNum], records[i], rowNum)) {
@@ -307,15 +337,18 @@ class Schedule extends Component {
     }
     
     renderLegend = () => {
-        return Object.keys(this.eventCategories).map((e, i) => (
-            <LegendPill 
-                color={this.eventCategories[e].color}
-                background={this.eventCategories[e].background}
-                isActive={i === this.state.activeTab}
-            >
-                {e}
-            </LegendPill>
-        ))
+        return <div className="row">
+            {Object.keys(this.eventCategories).map((e, i) => (
+                <LegendPill 
+                    color={this.eventCategories[e].color}
+                    background={this.eventCategories[e].background}
+                    isActive={i === this.state.activeTab}
+                    className="col-sm-auto text-sm-center"
+                >
+                    {e}
+                </LegendPill>
+            ))}
+        </div>
     }
 
     showPopup = (event) => {
@@ -360,29 +393,40 @@ class Schedule extends Component {
             return <div>Loading....</div>
         }
         return (
-            <Container className="my-5 ml-5 w-auto" onClick={this.hidePopup}>
-                <Search className="d-flex justify-content-center"> 
-                    <SearchContents className="d-flex">
-                        Timeline
-                        <SearchBox className="ml-auto"/>
-                    </SearchContents>
-                </Search>
-                <Legend>
-                    {this.renderLegend()}
-                </Legend>
-                <Main>
-                <Draggable>
-                    <Times>
-                        {this.renderTimes('Sat')}
-                        {this.renderTimes('Sun')}
-                    </Times>
-                    <Calendar>
-                        <SchedulePopup {...this.state.popup}/>
-                        {this.renderRows()}
-                    </Calendar>
-                </Draggable>
-                </Main>
-            </Container>
+            <>
+                <HideOnMobile 
+                    as={Container} 
+                    className="m-5 w-auto" 
+                    onClick={this.hidePopup} 
+                    
+                >
+                    <Search className="d-flex justify-content-center"> 
+                        <SearchContents className="d-flex">
+                            Timeline
+                            <SearchBox className="ml-auto"/>
+                        </SearchContents>
+                    </Search>
+                    <Legend className="container-fluid">
+                        {this.renderLegend()}
+                    </Legend>
+                    <Main  ref={this.scrollRef}>
+                        <Draggable>
+                            <Times>
+                                {this.renderTimes('Sat')}
+                                {this.renderTimes('Sun')}
+                            </Times>
+                            <Calendar>
+                                <SchedulePopup {...this.state.popup}/>
+                                {this.renderRows()}
+                            </Calendar>
+                        </Draggable>
+                    </Main>
+                    <Scroll scrollerRef={this.scrollerRef}/>
+                </HideOnMobile>
+                <HideAboveMobile as={Container} className="m-5">
+                    Mobile Version Of Schedule
+                </HideAboveMobile>
+            </>
         )
     }
 }
