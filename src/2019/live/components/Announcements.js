@@ -40,7 +40,6 @@ const AnnouncementContainer = styled.div`
     background: #CEFFE8;
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
-    overflow-y: scroll;
     display: flex;
     position: relative;
     flex: 1;
@@ -56,7 +55,7 @@ const Timestamp = styled.p`
 
 const Scrollable = styled.div`
     width: 100%;
-    height: 100%;
+    height: 95%;
     overflow-y: auto;
     position: absolute;
 
@@ -155,12 +154,12 @@ class Announcements extends Component {
 
             // assemble the required fields and push into the list
             announcementList.push(
-                <span className='w-100'>
+                <div className='w-100'>
                     <AnnouncementBubble
                         description={record.get('description')}
                     />
                     <Timestamp>{time}</Timestamp>
-                </span>
+                </div>
             )
         });
 
@@ -179,7 +178,7 @@ class Announcements extends Component {
                 </AnnouncementTitle>
 
                 <AnnouncementContainer className="h-auto">
-                    <Scrollable className="w-75 pb-3">
+                    <Scrollable className="w-75 mb-3">
                         {this.renderAnnouncements()}
                     </Scrollable>
                 </AnnouncementContainer>
