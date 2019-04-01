@@ -32,7 +32,7 @@ class Live extends Component {
                         </div>
                     </div>
                     <div className="container-fluid">
-                        <div className="row">
+                        <div className="row row-eq-height">
                             <div className="col-lg-8">
                                 <Schedule />
                             </div>

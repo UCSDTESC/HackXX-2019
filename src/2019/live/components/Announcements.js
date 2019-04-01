@@ -15,6 +15,9 @@ const Container = styled.div`
     border-top-right-radius: ${BORDER_RADIUS};
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
+    height: calc(100% - 6rem);
+    display: flex;
+    flex-direction: column;
 `
 
 // change background color to use constant
@@ -38,15 +41,25 @@ const AnnouncementContainer = styled.div`
     border-bottom-left-radius: ${BORDER_RADIUS};
     border-bottom-right-radius: ${BORDER_RADIUS};
     overflow-y: scroll;
-    height: 100%;
     display: flex;
+    position: relative;
+    flex: 1;
     justify-content: center;
+    min-height: 20rem;
 `
 
 const Timestamp = styled.p`
     font-size: 0.85rem;
     padding-left: 1rem;
     padding-top: 0.2rem;
+`
+
+const Scrollable = styled.div`
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: absolute;
+
 `
 
 class Announcements extends Component {
@@ -130,11 +143,13 @@ class Announcements extends Component {
 
     renderAnnouncements() {
 
+        let {records} = this.state;
+
         // push all announcements into this list
         let announcementList = []
         let time = ''
-
-        this.state.records.forEach(record => {
+        
+        records.forEach(record => {
 
             time = this.formatTimestamp(record.get('timestamp'));
 
@@ -163,8 +178,10 @@ class Announcements extends Component {
                     <AnnouncementIcon /> Announcements
                 </AnnouncementTitle>
 
-                <AnnouncementContainer>
-                    {this.renderAnnouncements()}
+                <AnnouncementContainer className="h-auto">
+                    <Scrollable className="w-75 pb-3">
+                        {this.renderAnnouncements()}
+                    </Scrollable>
                 </AnnouncementContainer>
             </Container>
         )
