@@ -3,13 +3,7 @@ import Schedule from './components/Schedule';
 import Nav from './components/Nav';
 import Links from './components/Links';
 import Announcements from './components/Announcements';
-
-import {
-    Page,
-    Container
-} from '../styles';
-
-
+import Countdown from './components/Countdown';
 
 class Live extends Component {
 
@@ -18,9 +12,9 @@ class Live extends Component {
             <>
                 <Nav />
                 <div className="container-fluid bg-primary">
-                    <div className="row justify-content-center">
+                    <div className="row text-center justify-content-center">
                         <div className="col-md-9">
-                            Countdown
+                            <Countdown />
                         </div>
                     </div>
                     <div className="row text-center justify-content-center">

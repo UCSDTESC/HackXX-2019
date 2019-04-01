@@ -5,10 +5,6 @@ import {
     PURPLE
 } from '../../constants'
 
-import {
-    CALENDAR_MARGIN
-} from '../constants'
-
 import {withRouter} from 'react-router-dom';
 import { mediaBreakpointDown } from '../../../breakpoints';
 
