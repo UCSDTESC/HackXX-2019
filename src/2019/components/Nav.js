@@ -65,7 +65,6 @@ class HackXXNav extends Component {
                     _nav.removeClass('nav__white')
                 }
                 else {
-                    console.log("here");
                     _nav.addClass('nav__white');
                 }
             } 

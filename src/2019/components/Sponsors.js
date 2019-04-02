@@ -34,7 +34,6 @@ const SponsorContainer = styled.a`
 
 function Sponsor(props) {
     const col = props.col || 'col-md-4 col-lg-4';
-    console.log(props);
     return (
         <SponsorContainer className={`${col} my-5 d-block`} href={props.link} target="_blank">
             <img src={props.logo} className={`img-fluid d-block m-auto  ${props.className}`}/>
