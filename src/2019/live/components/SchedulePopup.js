@@ -31,7 +31,6 @@ class SchedulePopup extends Component {
         const {isOpen, event} = this.props;
 
         if (!isOpen) return <div></div>;
-        console.log(event);
         return (
             <Popup x={event.x} y={event.y}>
                 <h5>{event.title}</h5>

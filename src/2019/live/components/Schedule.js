@@ -8,6 +8,7 @@ import ScheduleEvent from './ScheduleEvent';
 import SchedulePopup from './SchedulePopup';
 import Scroll from './ScheduleScroll';
 import VerticalEvent from './VerticalEvent';
+import Search from './ScheduleSearch';
 
 import {
     BORDER_RADIUS, LIGHT_BLUE
@@ -40,33 +41,6 @@ const HideAboveMobile = styled.div`
     ${mediaBreakpointUp('sm', `
         display: none !important;
     `)}
-`
-
-const Search = styled.div`
-    width: 100%;
-    border: 0;
-    border-top-left-radius: ${BORDER_RADIUS};
-    border-top-right-radius: ${BORDER_RADIUS};
-    outline: none;
-    font-size: 1.5rem;
-    padding: 1.8rem 0;
-    background: ${LIVE_BLUE};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`
-
-const SearchContents = styled.div`
-    width: 75%;
-    color: white;
-    font-weight: 800;
-`
-
-const SearchBox = styled.input`
-    border-radius: ${BORDER_RADIUS};
-    border: 0;
-    width: 50%;
-    outline: 0;
-    padding: 0 0.5rem;
-    font-size: 1.3rem;
 `
 
 const Container = styled.div`
@@ -341,8 +315,12 @@ class Schedule extends Component {
     }
 
     showPopup = (event) => {
+        const startsAt = this.hoursSinceStartTime(event['startTime']);
         this.setState({
-            popup: {event, isOpen: true}
+            popup: {event: {
+                ...event,
+                startsAt
+            }, isOpen: true}
         })
     }
 
@@ -398,12 +376,7 @@ class Schedule extends Component {
                     onClick={this.hidePopup} 
                     
                 >
-                    <Search className="d-flex justify-content-center"> 
-                        <SearchContents className="d-flex">
-                            Timeline
-                            <SearchBox className="ml-auto"/>
-                        </SearchContents>
-                    </Search>
+                    <Search options={this.state.records} showPopup={this.showPopup}/>
                     <Legend className="container-fluid">
                         {this.renderLegend()}
                     </Legend>
