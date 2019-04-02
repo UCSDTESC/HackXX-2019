@@ -14,7 +14,6 @@ const Bubble = styled.div`
     background: #FFFFFF;
 `
 
-
 class AnnouncementBubble extends Component {
     
     render() {
