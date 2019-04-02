@@ -25,6 +25,7 @@ const ScheduleSection = styled(Page)`
 
 const ScheduleTimes = styled.div`
     padding-right: 3rem;
+    color: white;
 `
 
 const EventContainer = styled.div`
@@ -44,6 +45,7 @@ const PaddedDay = styled.div`
     margin: 1rem 0;
 `
 
+
 class Schedule extends Component {
     constructor() {
         super();
@@ -58,27 +60,29 @@ class Schedule extends Component {
 
 
     componentDidMount() {
-        this.base('Static Schedule')
-            .select({
-                // Selecting records in Grid view:
-                view: "Grid view"
-            })
-            .eachPage((records, fetchNextPage) => {
-                // This function (`page`) will get called for each page of records.
-
-                this.setState({
-                    records: [
-                        ...this.state.records,
-                        ...records
-                    ]
+        if (!this.props.data) {
+            this.base('Static Schedule')
+                .select({
+                    // Selecting records in Grid view:
+                    view: "Grid view"
                 })
+                .eachPage((records, fetchNextPage) => {
+                    // This function (`page`) will get called for each page of records.
 
-                // To fetch the next page of records, call `fetchNextPage`.
-                fetchNextPage();
+                    this.setState({
+                        records: [
+                            ...this.state.records,
+                            ...records
+                        ]
+                    })
 
-            }, err => {
-                if (err) { console.error(err); return; }
-            });
+                    // To fetch the next page of records, call `fetchNextPage`.
+                    fetchNextPage();
+
+                }, err => {
+                    if (err) { console.error(err); return; }
+                });
+        }
     }
 
     isSaturday(timestamp) {
@@ -128,18 +132,20 @@ class Schedule extends Component {
         return formatted;
     }
     
-    renderStaticSchedule(day) {
+    renderStaticSchedule(day, data) {
         // day = 0; saturday
         // day = 1; sunday
 
         // push all announcements into this list
         let eventSchedule = []
         let formattedStartTime = ''
-        let formattedEndTime = ''
+        let formattedEndTime = '';
 
-        this.state.records.forEach(record => {
-            const startTime = record.get('startTime');
-            const title = record.get('title');
+        data.forEach(record => {
+            if (record._rawJson) record = record._rawJson.fields;
+
+            const startTime = record['startTime'];
+            const title = record['title'];
 
             if(day === 0) {
                 // make sure startTime is saturday
@@ -154,7 +160,7 @@ class Schedule extends Component {
             }
 
             formattedStartTime = this.formatTimestamp(startTime);
-            formattedEndTime = record.get('endTime');
+            formattedEndTime = record['endTime'];
             
             if(formattedEndTime) {
                 formattedEndTime = this.formatTimestamp(formattedEndTime);
@@ -166,7 +172,7 @@ class Schedule extends Component {
                             <div>{formattedStartTime}</div>
                             <div>to {formattedEndTime}</div>
                         </ScheduleTimes>
-                        <div className="w-50 text-left">
+                        <div className="w-50 text-left text-white">
                             <div>{title}</div>
                         </div>
                     </EventContainer>
@@ -177,7 +183,7 @@ class Schedule extends Component {
                         <ScheduleTimes className="w-50 text-right">
                             <div>{formattedStartTime}</div>
                         </ScheduleTimes>
-                        <div className="w-50 text-left">
+                        <div className="w-50 text-left text-white">
                             <div>{title}</div>
                         </div>
                     </EventContainer>
@@ -195,6 +201,26 @@ class Schedule extends Component {
     }
 
     render() {
+
+
+        if (this.props.data) {
+            return  (
+                <div className="container">
+                    <PaddedRow className="row justify-content-center">
+                        <div className="col col-md-6">
+                            <SectionSubHeader className="text-center">Saturday, April 6th</SectionSubHeader>
+                            {this.renderStaticSchedule(0, this.props.data)}
+                        </div>
+                        <div className="col col-md-6">
+                            <SectionSubHeader className="text-center">Sunday, April 7th</SectionSubHeader>
+                            {this.renderStaticSchedule(1, this.props.data)}
+                        </div>
+                    </PaddedRow>
+                </div>
+
+            )
+        }
+
         return (
             <ScheduleSection id="schedule">
                 <Container className="d-flex mx-auto h-100">
@@ -211,11 +237,11 @@ class Schedule extends Component {
                             <PaddedRow className="row justify-content-center">
                                 <div className="col col-md-6">
                                     <SectionSubHeader className="text-center">Saturday, April 6th</SectionSubHeader>
-                                    {this.renderStaticSchedule(0)}
+                                    {this.renderStaticSchedule(0, this.state.records)}
                                 </div>
                                 <div className="col col-md-6">
                                     <SectionSubHeader className="text-center">Sunday, April 7th</SectionSubHeader>
-                                    {this.renderStaticSchedule(1)}
+                                    {this.renderStaticSchedule(1, this.state.records)}
                                 </div>
                             </PaddedRow>
                             <SchoolOfFish className="ml-auto d-block"/>
