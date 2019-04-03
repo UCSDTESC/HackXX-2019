@@ -48,6 +48,11 @@ const tierTwoSponsor = [
         link: 'https://cisco.com'
     },
     {
+        name: 'iTradeNetwork',
+        logo: '/sponsors/itradenetwork.png',
+        link: 'https://itradenetwork.com',
+    },
+    {
         name: 'Surcle',
         logo: '/sponsors/surcle.png',
         link: 'https://surcle.io'
@@ -63,9 +68,9 @@ const tierTwoSponsor = [
         link: 'https://github.com'
     },
     {
-        name: 'iTradeNetwork',
-        logo: '/sponsors/itradenetwork.png',
-        link: 'https://itradenetwork.com',
+        name: 'UC San Diego Bookstore',
+        logo: '/sponsors/bookstore.png',
+        link: 'https://ucsandiegobookstore.com/'
     }
 ].map(x => ({...x, tier: 1}));
 
