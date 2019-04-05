@@ -8,9 +8,9 @@ const LinkRect = styled.span`
     display: inline-block;
     vertical-align: middle;
     padding: 1rem;
- 
+
     background: #FFFFFF;
-    box-shadow: 0px 0px 10px 
+    box-shadow: 0px 0px 10px
         rgba(0, 0, 0, 0.25);
     border-radius: 50px;
 
@@ -32,7 +32,7 @@ const LinkText = styled.a`
     font-decoration: none;
     border: none;
     padding-right: 1rem;
-    
+
     ${mediaBreakpointDown('lg-xl', `
         padding: none;
         margin: none;
@@ -75,7 +75,7 @@ class Links extends Component {
             <LinkRect>
                 <LinkGroup><LinkText className="btn btn-outline-light" href="https://hackxx-2019.slack.com" target="_blank"><LinkIcon src="/slack.svg"/>Slack</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
-                <LinkGroup><LinkText className="btn btn-outline-light" href="https://www.devpost.com" target="_blank"><LinkIcon src="/devpost.svg"/>Devpost</LinkText></LinkGroup>
+                <LinkGroup><LinkText className="btn btn-outline-light" href="https://hackxx-2019.devpost.com" target="_blank"><LinkIcon src="/devpost.svg"/>Devpost</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
                 <LinkGroup><LinkText className="btn btn-outline-light" href="/tracks.pdf" target="_blank"><LinkIcon src="/tracks.svg"/>Tracks</LinkText></LinkGroup>
                 <Divider src="/divider.svg"/>
